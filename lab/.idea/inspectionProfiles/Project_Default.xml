@@ -1,0 +1,11 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="Convert2streamapi" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="Java8ArraySetAll" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="RedundantExplicitVariableType" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="SimplifiableIfStatement" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="SimplifyForEach" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="SingleStatementInBlock" enabled="true" level="WARNING" enabled_by_default="true" />
+  </profile>
+</component>
