@@ -2,10 +2,15 @@ package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.function.Supplier;
 
 public class RetailService {
-    private Connection connection;
+    protected static Connection connection;
+
+    protected RetailService() {
+    }
 
     public RetailService(String db_name, String user, String password) {
         try {
@@ -13,51 +18,34 @@ public class RetailService {
             connection = DriverManager.getConnection(
                     "jdbc:postgresql://localhost:5432/" + db_name, user, password);
         } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
+            printError(e);
         }
         System.out.println("Opened database successfully!!!");
     }
 
-    public void createTables() {
-        Statement statement;
+    public void insert(Supplier<PreparedStatement> supplier) {
         try {
-            statement = connection.createStatement();
-            statement.executeUpdate(
-//                    "CREATE TABLE CUSTOMER (\n" +
-//                            "  Phone CHAR(20),\n" +
-//                            "  FirstName CHAR(20),\n" +
-//                            "  LastName CHAR(20),\n" +
-//                            "  Street TEXT,\n" +
-//                            "  City TEXT,\n" +
-//                            "  PRIMARY KEY (Phone)\n" +
-//                            ");\n" +
-//                            "\n" +
-                            "CREATE TABLE ORDER (\n" +
-                            "  Order_number KEY,\n" +
-                            "  Phone CHAR(20),\n" +
-                            "  To_street TEXT,\n" +
-                            "  To_city TEXT,\n" +
-                            "  Ship_date DATETIME,\n" +
-                            "  Product_ID KEY,\n" +
-                            "  PRIMARY KEY (Order_number),\n" +
-                            "  KEY FK (Phone, Product_ID)\n" +
-                            ");\n" +
-                            "\n" +
-                            "CREATE TABLE PRODUCT (\n" +
-                            "  Product_ID KEY,\n" +
-                            "  Quantity INT,\n" +
-                            "  isNew BOOLEAN,\n" +
-                            "  PRIMARY KEY (Product_ID)\n" +
-                            ");"
-            );
+            connection.setAutoCommit(false);
+            var statement = supplier.get();
+            statement.executeUpdate();
             statement.close();
-            connection.close();
+            connection.commit();
         } catch (Exception e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
+            printError(e);
         }
-        System.out.println("Tables created successfully!!!");
+    }
+
+    protected void printError(Exception e) {
+        e.printStackTrace();
+        System.err.println("Error in " + this.getClass().getSimpleName() + ": " + e.getClass().getName() + ": " + e.getMessage());
+        System.exit(0);
+    }
+
+    public void closeConnection() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            printError(e);
+        }
     }
 }
