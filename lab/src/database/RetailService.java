@@ -25,15 +25,15 @@ public class RetailService {
         try {
             statement = connection.createStatement();
             statement.executeUpdate(
-                    "CREATE TABLE CUSTOMER (\n" +
-                            "  Phone CHAR(20),\n" +
-                            "  FirstName CHAR(20),\n" +
-                            "  LastName CHAR(20),\n" +
-                            "  Street TEXT,\n" +
-                            "  City TEXT,\n" +
-                            "  PRIMARY KEY (Phone)\n" +
-                            ");\n" +
-                            "\n" +
+//                    "CREATE TABLE CUSTOMER (\n" +
+//                            "  Phone CHAR(20),\n" +
+//                            "  FirstName CHAR(20),\n" +
+//                            "  LastName CHAR(20),\n" +
+//                            "  Street TEXT,\n" +
+//                            "  City TEXT,\n" +
+//                            "  PRIMARY KEY (Phone)\n" +
+//                            ");\n" +
+//                            "\n" +
                             "CREATE TABLE ORDER (\n" +
                             "  Order_number KEY,\n" +
                             "  Phone CHAR(20),\n" +
@@ -58,6 +58,6 @@ public class RetailService {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        System.out.println("Table created successfully!!!");
+        System.out.println("Tables created successfully!!!");
     }
 }
