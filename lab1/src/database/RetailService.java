@@ -23,7 +23,7 @@ public class RetailService {
         System.out.println("Opened database successfully!!!");
     }
 
-    public void insert(Supplier<PreparedStatement> supplier) {
+    public void operate(Supplier<PreparedStatement> supplier) {
         try {
             connection.setAutoCommit(false);
             var statement = supplier.get();

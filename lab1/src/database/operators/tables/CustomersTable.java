@@ -17,4 +17,13 @@ public class CustomersTable extends RetailService {
         statement.setString(5, city);
         return statement;
     }
+
+    public PreparedStatement delete(String phone) throws SQLException {
+        var statement = connection.prepareStatement(
+                "DELETE FROM CUSTOMERS WHERE Phone = ?"
+        );
+        statement.setString(1, phone);
+
+        return statement;
+    }
 }
