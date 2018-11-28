@@ -51,7 +51,6 @@ public class Initialization extends RetailService {
                             "CREATE INDEX FK ON ORDER_ITEMS (Order_Number, Product_ID);"
             );
             statement.close();
-            connection.close();
         } catch (Exception e) {
             printError(e);
         }
