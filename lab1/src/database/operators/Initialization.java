@@ -11,19 +11,20 @@ public class Initialization extends RetailService {
         try {
             var statement = connection.createStatement();
             statement.executeUpdate(
-                    "CREATE TABLE CUSTOMERS (\n" +
+                    "CREATE TABLE IF NOT EXISTS CUSTOMERS (\n" +
                             "  Phone CHAR(20) NOT NULL,\n" +
                             "  FirstName CHAR(20) NOT NULL,\n" +
                             "  LastName CHAR(20) NOT NULL,\n" +
                             "  Street TEXT,\n" +
-                            "  City TEXT NOT NULL\n" +
+                            "  City TEXT NOT NULL,\n" +
+                            "  PRIMARY KEY (Phone)\n" +
                             ");\n" +
                             "\n" +
-                            "CREATE UNIQUE INDEX CUSTOMERS_PHONE_UINDEX ON CUSTOMERS (Phone);" +
+                            "CREATE UNIQUE INDEX IF NOT EXISTS CUSTOMERS_PHONE_UINDEX ON CUSTOMERS (Phone);" +
+//                            "\n" +
+//                            "ALTER TABLE CUSTOMERS ADD CONSTRAINT CUSTOMERS_PK PRIMARY KEY (Phone);" +
                             "\n" +
-                            "ALTER TABLE CUSTOMERS ADD CONSTRAINT CUSTOMERS_PK PRIMARY KEY (Phone);" +
-                            "\n" +
-                            "CREATE TABLE ORDERS (\n" +
+                            "CREATE TABLE IF NOT EXISTS ORDERS (\n" +
                             "  Order_Number SERIAL NOT NULL,\n" +
                             "  Phone CHAR(20) NOT NULL,\n" +
                             "  ToStreet TEXT NOT NULL,\n" +
@@ -33,22 +34,22 @@ public class Initialization extends RetailService {
                             "  CONSTRAINT FK FOREIGN KEY (Phone) REFERENCES CUSTOMERS (Phone)\n" +
                             ");\n" +
                             "\n" +
-                            "CREATE TABLE PRODUCTS (\n" +
+                            "CREATE TABLE IF NOT EXISTS PRODUCTS (\n" +
                             "  Product_ID SERIAL NOT NULL,\n" +
                             "  ProductType TEXT NOT NULL,\n" +
                             "  isNew BOOLEAN NOT NULL,\n" +
                             "  PRIMARY KEY (Product_ID)\n" +
                             ");\n" +
                             "\n" +
-                            "CREATE TABLE ORDER_ITEMS (\n" +
+                            "CREATE TABLE IF NOT EXISTS ORDER_ITEMS (\n" +
                             "  Item_ID SERIAL NOT NULL,\n" +
                             "  Quantity INT NOT NULL,\n" +
-                            "  Order_Number INT NOT NULL ,\n" +
-                            "  Product_ID INT NOT NULL ,\n" +
+                            "  Order_Number INT NOT NULL,\n" +
+                            "  Product_ID INT NOT NULL,\n" +
                             "  PRIMARY KEY (Item_ID)\n" +
                             ");\n" +
                             "\n" +
-                            "CREATE INDEX FK ON ORDER_ITEMS (Order_Number, Product_ID);"
+                            "CREATE INDEX IF NOT EXISTS FK ON ORDER_ITEMS (Order_Number, Product_ID);"
             );
             statement.close();
         } catch (Exception e) {
