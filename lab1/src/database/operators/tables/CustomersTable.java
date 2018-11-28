@@ -20,10 +20,16 @@ public class CustomersTable extends RetailService {
 
     public PreparedStatement delete(String phone) throws SQLException {
         var statement = connection.prepareStatement(
-                "DELETE FROM CUSTOMERS WHERE Phone = ?"
+                "DELETE FROM ORDER_ITEMS WHERE Order_number = (SELECT Order_number FROM ORDERS WHERE Phone = ?);\n" +
+                        "\n" +
+                        "DELETE FROM ORDERS WHERE Phone = ?;\n" +
+                        "\n" +
+                        "DELETE FROM CUSTOMERS WHERE Phone = ?;"
+
         );
         statement.setString(1, phone);
-
+        statement.setString(2, phone);
+        statement.setString(3, phone);
         return statement;
     }
 }
