@@ -10,8 +10,7 @@ import java.sql.SQLException;
 public class OrdersTable extends RetailService {
     private static int orderNumber;
 
-    public OrdersTable(int orderNumber) {
-        OrdersTable.orderNumber = orderNumber;
+    public OrdersTable() {
     }
 
     public static int getOrderNumber() {
