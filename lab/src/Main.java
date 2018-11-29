@@ -11,7 +11,7 @@ class Main {
         service.operate(() ->
         {
             try {
-                return new CustomersTable().insert("+380-56-456-34-42", "Valera", "Tovol", "Marka st.", "Kyiv");
+                return new CustomersTable("+380-56-456-34-42").insert("Valera", "Tovol", "Marka st.", "Kyiv");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -32,15 +32,15 @@ class Main {
             return null;
         });
 
-        service.operate(() ->
-        {
-            try {
-                return new CustomersTable().delete("+380-56-456-34-42");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
+//        service.operate(() ->
+//        {
+//            try {
+//                return new CustomersTable().delete();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//            return null;
+//        });
         service.closeConnection();
     }
 }
