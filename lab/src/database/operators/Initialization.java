@@ -12,9 +12,9 @@ public class Initialization extends RetailService {
             var statement = connection.createStatement();
             statement.executeUpdate(
                     "CREATE TABLE IF NOT EXISTS CUSTOMERS (\n" +
-                            "  Phone CHAR(20) NOT NULL,\n" +
-                            "  FirstName CHAR(20) NOT NULL,\n" +
-                            "  LastName CHAR(20) NOT NULL,\n" +
+                            "  Phone VARCHAR(20) NOT NULL,\n" +
+                            "  FirstName VARCHAR(20) NOT NULL,\n" +
+                            "  LastName VARCHAR(20) NOT NULL,\n" +
                             "  Street TEXT,\n" +
                             "  City TEXT NOT NULL,\n" +
                             "  PRIMARY KEY (Phone)\n" +
@@ -26,12 +26,12 @@ public class Initialization extends RetailService {
                             "\n" +
                             "CREATE TABLE IF NOT EXISTS ORDERS (\n" +
                             "  Order_Number SERIAL NOT NULL,\n" +
-                            "  Phone CHAR(20) NOT NULL,\n" +
+                            "  Phone VARCHAR(20) NOT NULL,\n" +
                             "  ToStreet TEXT NOT NULL,\n" +
                             "  ToCity TEXT NOT NULL,\n" +
-                            "  ShipDate DATE NOT NULL,\n" +
+                            "  ShipDate TIMESTAMP NOT NULL,\n" +
                             "  PRIMARY KEY (Order_Number),\n" +
-                            "  CONSTRAINT FK FOREIGN KEY (Phone) REFERENCES CUSTOMERS (Phone)\n" +
+                            "  CONSTRAINT FK FOREIGN KEY (Phone) REFERENCES CUSTOMERS (Phone) ON DELETE CASCADE ON UPDATE CASCADE\n" +
                             ");\n" +
                             "\n" +
                             "CREATE TABLE IF NOT EXISTS PRODUCTS (\n" +
@@ -46,10 +46,12 @@ public class Initialization extends RetailService {
                             "  Quantity INT NOT NULL,\n" +
                             "  Order_Number INT NOT NULL,\n" +
                             "  Product_ID INT NOT NULL,\n" +
-                            "  PRIMARY KEY (Item_ID)\n" +
+                            "  PRIMARY KEY (Item_ID),\n" +
+                            "  CONSTRAINT FK FOREIGN KEY (Order_number) REFERENCES ORDERS (Order_number) ON DELETE CASCADE ON UPDATE CASCADE\n" +
                             ");\n" +
                             "\n" +
-                            "CREATE INDEX IF NOT EXISTS FK ON ORDER_ITEMS (Order_Number, Product_ID);"
+                            "CREATE INDEX IF NOT EXISTS FK ON ORDER_ITEMS (Order_Number, Product_ID);" +
+                            "\n"
             );
             statement.close();
         } catch (Exception e) {
