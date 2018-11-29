@@ -10,15 +10,15 @@ class Main {
     public static void main(String[] args) {
         var service = new Initialization("Retail_Service", "postgres", "Dima4532");
         service.createTables();
-        service.operate(() ->
-        {
-            try {
-                return new CustomersTable().insert("+380-56-456-34-42", "Valera", "Tovol", "Marka st.", "Kyiv");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
+//        service.operate(() ->
+//        {
+//            try {
+//                return new CustomersTable().insert("+380-56-456-34-42", "Valera", "Tovol", "Marka st.", "Kyiv");
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//            return null;
+//        });
         service.operate(() ->
         {
             try {
