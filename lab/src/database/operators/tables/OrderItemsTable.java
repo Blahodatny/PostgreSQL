@@ -6,15 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class OrderItemsTable extends OrdersTable {
-    public PreparedStatement insert(int quantity, int productId) {
+    public PreparedStatement insert(int productId, int quantity) {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "INSERT INTO ORDER_ITEMS (Phone, Order_Number, Product_ID) VALUES (?, ?, ?)"
+                    "INSERT INTO ORDER_ITEMS (Order_Number, Product_ID, Quantity) VALUES (?, ?, ?)"
             );
-            statement.setInt(1, quantity);
-            statement.setInt(2, orderNumber);
-            statement.setInt(3, productId);
+            statement.setInt(1, orderNumber);
+            statement.setInt(2, productId);
+            statement.setInt(3, quantity);
         } catch (SQLException e) {
             printError(e);
         }

@@ -6,26 +6,34 @@ import database.operators.enums.EOrderAttribute;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class OrdersTable extends RetailService {
     int orderNumber;
 
-    public PreparedStatement insert(String phone, String toStreet, String toCity) {
-        PreparedStatement statement = null;
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void insert(String phone, String toStreet, String toCity) {
         try {
-            statement = connection.prepareStatement(
-                    "INSERT INTO ORDERS (Phone, ToStreet, ToCity, ShipDate) VALUES (?, ?, ?, CURRENT_TIMESTAMP(0)) RETURNING Order_Number"
+            connection.setAutoCommit(false);
+            var statement = connection.prepareStatement(
+                    "INSERT INTO ORDERS (Phone, ToStreet, ToCity, ShipDate)" +
+                            "VALUES (?, ?, ?, CURRENT_TIMESTAMP(0))", Statement.RETURN_GENERATED_KEYS
             );
             statement.setString(1, phone);
             statement.setString(2, toStreet);
             statement.setString(3, toCity);
-            var res = statement.executeQuery();
+            statement.executeUpdate();
+            var res = statement.getGeneratedKeys();
             res.next();
             orderNumber = res.getInt(1);
+            statement.close();
+            connection.commit();
         } catch (SQLException e) {
             printError(e);
         }
-        return statement;
     }
 
     public PreparedStatement delete() {
