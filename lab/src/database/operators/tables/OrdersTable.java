@@ -3,17 +3,12 @@ package database.operators.tables;
 import database.RetailService;
 import database.operators.enums.EOrderAttribute;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class OrdersTable extends RetailService {
     int orderNumber;
-
-    public int getOrderNumber() {
-        return orderNumber;
-    }
 
     public void insert(String phone, String toStreet, String toCity) {
         try {

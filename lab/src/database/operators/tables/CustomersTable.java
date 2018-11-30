@@ -5,7 +5,6 @@ import database.operators.enums.ECustomerAttribute;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class CustomersTable extends RetailService {
     private String phone;
