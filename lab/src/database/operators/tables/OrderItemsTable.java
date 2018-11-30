@@ -1,20 +1,11 @@
 package database.operators.tables;
 
-import database.RetailService;
 import database.operators.enums.EOrderItemAttribute;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class OrderItemsTable extends RetailService {
-    private static int orderNumber;
-
-    public OrderItemsTable(int orderNumber) {
-        OrderItemsTable.orderNumber = orderNumber;
-    }
-
-    public OrderItemsTable() {}
-
+public class OrderItemsTable extends OrdersTable {
     public PreparedStatement insert(int quantity, int productId) {
         PreparedStatement statement = null;
         try {

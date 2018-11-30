@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.function.Supplier;
 
 public class RetailService {
-    protected static Connection connection;
+    protected Connection connection;
 
     protected RetailService() {
     }

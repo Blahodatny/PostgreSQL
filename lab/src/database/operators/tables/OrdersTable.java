@@ -8,14 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class OrdersTable extends RetailService {
-    private static int orderNumber;
-
-    public OrdersTable() {
-    }
-
-    public static int getOrderNumber() {
-        return orderNumber;
-    }
+    int orderNumber;
 
     public PreparedStatement insert(String phone, String toStreet, String toCity) {
         PreparedStatement statement = null;

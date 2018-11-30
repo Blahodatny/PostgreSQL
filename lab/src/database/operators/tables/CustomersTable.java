@@ -7,14 +7,14 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class CustomersTable extends RetailService {
-    private static String phone;
+    private String phone;
 
     public CustomersTable(String phone) {
-        CustomersTable.phone = phone;
+        this.phone = phone;
     }
 
-    public static void setPhone(String phone) {
-        CustomersTable.phone = phone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public PreparedStatement insert(String firstName, String lastName, String street, String city) {
@@ -48,7 +48,9 @@ public class CustomersTable extends RetailService {
     public PreparedStatement update(ECustomerAttribute attribute, String value) {
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement("UPDATE CUSTOMERS SET " + attribute.name() + " = ? WHERE Phone = ?");
+            statement = connection.prepareStatement(
+                    "UPDATE CUSTOMERS SET " + attribute.name() + " = ? WHERE Phone = ?"
+            );
             statement.setString(1, value);
             statement.setString(2, phone);
         } catch (SQLException e) {

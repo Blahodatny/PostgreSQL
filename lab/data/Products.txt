@@ -1,0 +1,5 @@
+Cars true
+Staff false
+Sniff true
+Weed true
+Cocaine false
