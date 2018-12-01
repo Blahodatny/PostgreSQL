@@ -16,6 +16,7 @@ import java.util.stream.IntStream;
 
 class RandomData extends RetailService {
     private Consumer<Supplier<PreparedStatement>> consumer;
+    final private ProductsTable productsTable = new ProductsTable();
     final private String dir = System.getProperty("user.dir") + "/data/";
     final private byte MAXQUAN = 100;
     final private byte MAXPRODID = 5;
@@ -42,15 +43,14 @@ class RandomData extends RetailService {
         while (scanner.hasNextLine()) {
             table.insert(scanner.next(), scanner.next() + " " + scanner.next(), scanner.next());
             IntStream.range(0, random.nextInt(MAXPRODID) + 1).forEach(i -> consumer.accept(
-                    () -> table.insert(random.nextInt(MAXPRODID) + 1, random.nextInt(MAXQUAN) + 1)
+                    () -> table.insert(productsTable.getRow(random.nextInt(MAXPRODID) + 1), random.nextInt(MAXQUAN) + 1)
             ));
         }
     }
 
     void insertProducts(String file) throws FileNotFoundException {
         var scanner = new Scanner(new File(dir + file));
-        var table = new ProductsTable();
         while (scanner.hasNextLine())
-            consumer.accept(() -> table.insert(scanner.next(), scanner.nextBoolean()));
+            consumer.accept(() -> productsTable.insert(scanner.next(), scanner.next(), scanner.nextBoolean()));
     }
 }

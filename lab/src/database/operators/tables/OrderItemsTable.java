@@ -6,14 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class OrderItemsTable extends OrdersTable {
-    public PreparedStatement insert(int productId, int quantity) {
+    public PreparedStatement insert(String productID, int quantity) {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO ORDER_ITEMS (Order_Number, Product_ID, Quantity) VALUES (?, ?, ?)"
             );
             statement.setInt(1, orderNumber);
-            statement.setInt(2, productId);
+            statement.setString(2, productID);
             statement.setInt(3, quantity);
         } catch (SQLException e) {
             printError(e);
@@ -21,19 +21,19 @@ public class OrderItemsTable extends OrdersTable {
         return statement;
     }
 
-    public PreparedStatement delete(int productID) {
+    public PreparedStatement delete(String productID) {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement("DELETE FROM ORDER_ITEMS WHERE Order_number = ? AND Product_ID = ?;\n");
             statement.setInt(1, orderNumber);
-            statement.setInt(2, productID);
+            statement.setString(2, productID);
         } catch (SQLException e) {
             printError(e);
         }
         return statement;
     }
 
-    public PreparedStatement update(EOrderItemAttribute attribute, int value, int productID) {
+    public PreparedStatement update(EOrderItemAttribute attribute, int value, String productID) {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
@@ -41,7 +41,7 @@ public class OrderItemsTable extends OrdersTable {
             );
             statement.setInt(1, value);
             statement.setInt(2, orderNumber);
-            statement.setInt(3, productID);
+            statement.setString(3, productID);
         } catch (SQLException e) {
             printError(e);
         }

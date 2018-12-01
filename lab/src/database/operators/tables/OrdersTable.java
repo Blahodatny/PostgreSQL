@@ -24,6 +24,7 @@ public class OrdersTable extends RetailService {
             var res = statement.getGeneratedKeys();
             res.next();
             orderNumber = res.getInt(1);
+            res.close();
             statement.close();
             connection.commit();
         } catch (SQLException e) {
