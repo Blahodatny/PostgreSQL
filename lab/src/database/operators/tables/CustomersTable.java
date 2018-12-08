@@ -33,7 +33,7 @@ public class CustomersTable extends RetailService {
         return statement;
     }
 
-    public PreparedStatement delete() {
+    protected PreparedStatement delete() {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement("DELETE FROM CUSTOMERS WHERE Phone = ?;\n");
@@ -44,7 +44,7 @@ public class CustomersTable extends RetailService {
         return statement;
     }
 
-    public PreparedStatement update(ECustomerAttribute attribute, String value) {
+    protected PreparedStatement update(ECustomerAttribute attribute, String value) {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
