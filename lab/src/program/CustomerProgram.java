@@ -28,7 +28,7 @@ public class CustomerProgram extends Program {
                     System.out.println(
                             "1 - create a new customer\n" +
                                     "2 - update customer\n" +
-                                    "3 - set customer\n" +
+                                    "3 - delete customer\n" +
                                     "4 - help\n" +
                                     "any other - exit to main loop"
                     );

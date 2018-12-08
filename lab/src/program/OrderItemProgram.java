@@ -16,19 +16,17 @@ class OrderItemProgram extends Program {
                 case 3:
                 case 5:
                     var array = num == 1 ? input.create((byte) 3) : input.update();
-                    if (num == 1)
-                        table.insert(array[1], Integer.parseInt(array[2]));
-                    else {
-                        if (num == 5) {
-                            table.setOrderNumber(Integer.parseInt(array[0]));
-                            break;
-                        }
-                        table.operate(() -> num == 2 ? table.update(
-                                EOrderItemAttribute.valueOf(array[1]),
-                                Integer.parseInt(array[2]), array[0]
-                        )
-                                : table.delete(array[0]));
+                    if (num == 5) {
+                        table.setOrderNumber(Integer.parseInt(array[0]));
+                        break;
                     }
+                    table.operate(() ->
+                            num == 1 ? table.insert(array[0], Integer.parseInt(array[1]))
+                                    : num == 2 ? table.update(
+                                    EOrderItemAttribute.valueOf(array[1]),
+                                    Integer.parseInt(array[2]), array[0]
+                            )
+                                    : table.delete(input.set()));
                     break;
 
                 case 4:
