@@ -24,7 +24,9 @@ public class OrderItemsTable extends OrdersTable {
     public PreparedStatement delete(String productID) {
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement("DELETE FROM ORDER_ITEMS WHERE Order_number = ? AND Product_ID = ?;\n");
+            statement = connection.prepareStatement(
+                    "DELETE FROM ORDER_ITEMS WHERE Order_number = ? AND Product_ID = ?;\n"
+            );
             statement.setInt(1, orderNumber);
             statement.setString(2, productID);
         } catch (SQLException e) {

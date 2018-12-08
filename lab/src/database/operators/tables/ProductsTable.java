@@ -9,7 +9,9 @@ public class ProductsTable extends RetailService {
     public PreparedStatement insert(String productID, String productType, boolean isNew) {
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement("INSERT INTO PRODUCTS (Product_ID, ProductType, isNew) VALUES (?, ?, ?)");
+            statement = connection.prepareStatement(
+                    "INSERT INTO PRODUCTS (Product_ID, ProductType, isNew) VALUES (?, ?, ?)"
+            );
             statement.setString(1, productID);
             statement.setString(2, productType);
             statement.setBoolean(3, isNew);

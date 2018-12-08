@@ -2,17 +2,13 @@ package program;
 
 import database.operators.enums.ECustomerAttribute;
 import database.operators.tables.CustomersTable;
-import input.Customer;
 
-import java.util.Scanner;
-
-public class CustomerProgram extends CustomersTable {
-    private final Scanner scanner = new Scanner(System.in);
-    private final Customer customer = new Customer();
+public class CustomerProgram extends Program {
+    private final CustomersTable table = new CustomersTable();
 
     public void run() {
         System.out.println(
-                "Please, enter an action you want to perform with customer\nFor help enter \'4\'"
+                "Please, enter an action you want to perform with input\nFor help enter \'4\'"
         );
         while (true) {
             var num = scanner.nextByte();
@@ -20,12 +16,12 @@ public class CustomerProgram extends CustomersTable {
                 case 1:
                 case 2:
                 case 3:
-                    var array = num == 1 ? customer.createCustomer() : customer.updateCustomer();
-                    setPhone(num == 3 ? customer.deleteCustomer() : array[0]);
-                    operate(() ->
-                            num == 1 ? insert(array[1], array[2], array[3], array[4])
-                                    : num == 2 ? update(ECustomerAttribute.valueOf(array[1]), array[2])
-                                    : delete());
+                    var array = num == 1 ? input.create((byte) 1) : input.update();
+                    table.setPhone(num == 3 ? input.delete() : array[0]);
+                    table.operate(() ->
+                            num == 1 ? table.insert(array[1], array[2], array[3], array[4])
+                                    : num == 2 ? table.update(ECustomerAttribute.valueOf(array[1]), array[2])
+                                    : table.delete());
                     break;
 
                 case 4:
@@ -34,11 +30,11 @@ public class CustomerProgram extends CustomersTable {
                                     "2 - update customer\n" +
                                     "3 - delete customer\n" +
                                     "4 - help\n" +
-                                    "5 - exit to main loop"
+                                    "any other - exit to main loop"
                     );
                     break;
 
-                case 5:
+                default:
                     return;
             }
         }

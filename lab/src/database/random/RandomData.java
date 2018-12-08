@@ -43,7 +43,9 @@ class RandomData extends RetailService {
         while (scanner.hasNextLine()) {
             table.insert(scanner.next(), scanner.next() + " " + scanner.next(), scanner.next());
             IntStream.range(0, random.nextInt(MAXPRODID) + 1).forEach(i -> consumer.accept(
-                    () -> table.insert(productsTable.getRow(random.nextInt(MAXPRODID) + 1), random.nextInt(MAXQUAN) + 1)
+                    () -> table.insert(
+                            productsTable.getRow(random.nextInt(MAXPRODID) + 1), random.nextInt(MAXQUAN) + 1
+                    )
             ));
         }
     }

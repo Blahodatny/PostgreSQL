@@ -10,6 +10,14 @@ import java.sql.Statement;
 public class OrdersTable extends RetailService {
     int orderNumber;
 
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
     public void insert(String phone, String toStreet, String toCity) {
         try {
             connection.setAutoCommit(false);
@@ -46,7 +54,9 @@ public class OrdersTable extends RetailService {
     public PreparedStatement update(EOrderAttribute attribute, String value) {
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement("UPDATE ORDERS SET " + attribute.name() + " = ? WHERE Order_Number = ?");
+            statement = connection.prepareStatement(
+                    "UPDATE ORDERS SET " + attribute.name() + " = ? WHERE Order_Number = ?"
+            );
             statement.setString(1, value);
             statement.setInt(2, orderNumber);
         } catch (SQLException e) {

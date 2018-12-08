@@ -37,7 +37,9 @@ public class RetailService {
 
     protected void printError(Exception e) {
         e.printStackTrace();
-        System.err.println("Error in " + this.getClass().getSimpleName() + ": " + e.getClass().getName() + ": " + e.getMessage());
+        System.err.println(
+                "Error in " + this.getClass().getSimpleName() + ": " + e.getClass().getName() + ": " + e.getMessage()
+        );
         System.exit(0);
     }
 
