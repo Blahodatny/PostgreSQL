@@ -1,12 +1,12 @@
 package program;
 
 import database.operators.enums.EOrderAttribute;
-import database.operators.tables.OrdersTable;
+import database.operators.tables.OrderItemsTable;
 
 public class OrderProgram extends Program {
-    private final OrdersTable table = new OrdersTable();
+    private final OrderItemsTable table = new OrderItemsTable();
 
-    public int run() {
+    public void run() {
         System.out.println(
                 "Please, enter an action you want to perform with order\nFor help enter \'4\'"
         );
@@ -16,12 +16,14 @@ public class OrderProgram extends Program {
                 case 1:
                 case 2:
                 case 3:
+                case 5:
                     var array = num == 1 ? input.create((byte) 2) : input.update();
                     if (num == 1) {
                         table.insert(array[1], array[2], array[3]);
                         System.out.println("ATTENTION!!! Your order number is: " + table.getOrderNumber());
                     } else {
-                        table.setOrderNumber(Integer.parseInt(num == 3 ? input.delete() : array[0]));
+                        table.setOrderNumber(Integer.parseInt(num != 2 ? array[0] : input.set()));
+                        if (num == 5) break;
                         table.operate(() -> num == 2 ? table.update(EOrderAttribute.valueOf(array[1]), array[2])
                                 : table.delete());
                     }
@@ -33,12 +35,19 @@ public class OrderProgram extends Program {
                                     "2 - update order\n" +
                                     "3 - delete order\n" +
                                     "4 - help\n" +
+                                    "5 - set number of order\n" +
+                                    "\tIf you just inserted or updated one there is no need to run\n" +
+                                    "6 - continue to set products in order\n" +
                                     "any other - exit to main loop"
                     );
                     break;
 
+                case 6:
+                    new OrderItemProgram().run(table);
+                    break;
+
                 default:
-                    return table.getOrderNumber();
+                    return;
             }
         }
     }

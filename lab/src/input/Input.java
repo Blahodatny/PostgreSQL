@@ -32,8 +32,8 @@ public class Input {
         return new String[]{id, scanner.next(), scanner.next()};
     }
 
-    public String delete() {
-        System.out.println("Please, enter identification of table you wanna delete");
+    public String set() {
+        System.out.println("Please, enter identification of table you wanna delete\\set");
         return scanner.next();
     }
 }

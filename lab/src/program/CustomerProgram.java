@@ -17,7 +17,7 @@ public class CustomerProgram extends Program {
                 case 2:
                 case 3:
                     var array = num == 1 ? input.create((byte) 1) : input.update();
-                    table.setPhone(num == 3 ? input.delete() : array[0]);
+                    table.setPhone(num == 3 ? input.set() : array[0]);
                     table.operate(() ->
                             num == 1 ? table.insert(array[1], array[2], array[3], array[4])
                                     : num == 2 ? table.update(ECustomerAttribute.valueOf(array[1]), array[2])
@@ -28,7 +28,7 @@ public class CustomerProgram extends Program {
                     System.out.println(
                             "1 - create a new customer\n" +
                                     "2 - update customer\n" +
-                                    "3 - delete customer\n" +
+                                    "3 - set customer\n" +
                                     "4 - help\n" +
                                     "any other - exit to main loop"
                     );
