@@ -38,6 +38,8 @@ public class Initialization extends RetailService {
                     "  PRIMARY KEY (Product_ID)\n" +
                     ");\n" +
                     "\n" +
+                    "CREATE UNIQUE INDEX IF NOT EXISTS PRODUCTS_PRODUCT_ID_UINDEX ON PRODUCTS (Product_ID);" +
+                    "\n" +
                     "CREATE TABLE IF NOT EXISTS ORDER_ITEMS (\n" +
                     "  Item_ID SERIAL NOT NULL,\n" +
                     "  Quantity INT NOT NULL,\n" +
