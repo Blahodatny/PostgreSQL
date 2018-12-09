@@ -20,7 +20,7 @@ public class RetailService {
         } catch (Exception e) {
             printError(e);
         }
-        System.out.println("Opened task1.database successfully!!!");
+        System.out.println("Opened database successfully!!!");
     }
 
     public void operate(Supplier<PreparedStatement> supplier) {
