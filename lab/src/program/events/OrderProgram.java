@@ -2,9 +2,13 @@ package program.events;
 
 import database.operators.enums.EOrderAttribute;
 import database.operators.tables.OrderItemsTable;
+import program.interfaces.IProgram;
+
+import java.util.Scanner;
 
 public class OrderProgram implements IProgram {
     private final OrderItemsTable table = new OrderItemsTable();
+    private final Scanner scanner = new Scanner(System.in);
 
     public void run() {
         System.out.println(
@@ -19,7 +23,7 @@ public class OrderProgram implements IProgram {
                 case 5:
                     var array = num == 1 ? input.create((byte) 2) : num == 2 ? input.update() : input.set();
                     if (num == 1) {
-                        table.insert(array[1], array[2], array[3]);
+                        table.insert(array[0], array[1], array[2]);
                         System.out.println("ATTENTION!!! Your order number is: " + table.getOrderNumber());
                     } else {
                         table.setOrderNumber(Integer.parseInt(array[0]));

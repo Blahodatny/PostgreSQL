@@ -9,13 +9,8 @@ import java.util.Scanner;
 
 public class Program {
     private final Scanner scanner = new Scanner(System.in);
-    private Initialization service;
 
-    public Program(Initialization service) {
-        this.service = service;
-    }
-
-    public void run() {
+    public void run(Initialization service) {
         System.out.println(
                 "Please, enter an action you want to perform\nFor help enter \'4\'"
         );

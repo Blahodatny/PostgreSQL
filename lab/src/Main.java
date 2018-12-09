@@ -5,7 +5,7 @@ class Main {
     public static void main(String[] args) {
         var service = new Initialization("Retail_Service", "postgres", "Dima4532");
         service.createTables();
-        new Program(service).run();
+        new Program().run(service);
         service.closeConnection();
     }
 }

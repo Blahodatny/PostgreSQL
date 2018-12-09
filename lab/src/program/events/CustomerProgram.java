@@ -2,9 +2,13 @@ package program.events;
 
 import database.operators.enums.ECustomerAttribute;
 import database.operators.tables.CustomersTable;
+import program.interfaces.IProgram;
+
+import java.util.Scanner;
 
 public class CustomerProgram implements IProgram {
     private final CustomersTable table = new CustomersTable();
+    private final Scanner scanner = new Scanner(System.in);
 
     public void run() {
         System.out.println(
