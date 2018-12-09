@@ -3,14 +3,12 @@ package input;
 import database.operators.enums.ECustomerAttribute;
 import database.operators.enums.EOrderAttribute;
 import database.operators.enums.EOrderItemAttribute;
+import interfaces.IScanner;
 
-import java.util.Scanner;
-
-public class Input {
-    private final Scanner scanner = new Scanner(System.in);
-
+public class Input implements IScanner {
     public String[] create(byte num) {
         System.out.println("Please, enter your credentials");
+        scanner.nextLine();
         var array = new String[num == 1 ? 5 : num == 2 ? 3 : 2];
         byte i = 0;
         for (var attr :
