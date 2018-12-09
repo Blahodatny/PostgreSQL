@@ -19,20 +19,15 @@ public class OrderProgram implements IScanner, IInput {
                 case 2:
                 case 3:
                 case 5:
-                    var array =
-                            num == 1 ? input.create((byte) 2)
-                                    : num == 2 ? input.update()
-                                    : num == 5 ? input.set() : null;
+                    var array = num == 1 ? input.create((byte) 2) : num == 2 ? input.update() : input.set();
                     if (num == 1) {
                         table.insert(array[0], array[1], array[2]);
                         System.out.println("ATTENTION!!! Your order number is: " + table.getOrderNumber());
                     } else {
-                        if (num != 3) {
-                            table.setOrderNumber(Integer.parseInt(array[0]));
-                            if (num == 5) break;
-                        }
+                        table.setOrderNumber(Integer.parseInt(array[0]));
+                        if (num == 5) break;
                         table.operate(() -> num == 2 ? table.update(EOrderAttribute.valueOf(array[1]), array[2])
-                                : table.delete(input.set()[0]));
+                                : table.delete());
                     }
                     break;
 
