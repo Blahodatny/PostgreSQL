@@ -1,9 +1,9 @@
-package program;
+package program.events;
 
 import database.operators.enums.EOrderAttribute;
 import database.operators.tables.OrderItemsTable;
 
-public class OrderProgram extends Program {
+public class OrderProgram implements IProgram {
     private final OrderItemsTable table = new OrderItemsTable();
 
     public void run() {
@@ -17,12 +17,12 @@ public class OrderProgram extends Program {
                 case 2:
                 case 3:
                 case 5:
-                    var array = num == 1 ? input.create((byte) 2) : input.update();
+                    var array = num == 1 ? input.create((byte) 2) : num == 2 ? input.update() : input.set();
                     if (num == 1) {
                         table.insert(array[1], array[2], array[3]);
                         System.out.println("ATTENTION!!! Your order number is: " + table.getOrderNumber());
                     } else {
-                        table.setOrderNumber(Integer.parseInt(num != 2 ? array[0] : input.set()));
+                        table.setOrderNumber(Integer.parseInt(array[0]));
                         if (num == 5) break;
                         table.operate(() -> num == 2 ? table.update(EOrderAttribute.valueOf(array[1]), array[2])
                                 : table.delete());

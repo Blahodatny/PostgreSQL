@@ -1,4 +1,4 @@
-package database.random;
+package random;
 
 import database.RetailService;
 import database.operators.tables.CustomersTable;

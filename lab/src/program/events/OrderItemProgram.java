@@ -1,9 +1,9 @@
-package program;
+package program.events;
 
 import database.operators.enums.EOrderItemAttribute;
 import database.operators.tables.OrderItemsTable;
 
-class OrderItemProgram extends Program {
+class OrderItemProgram implements IProgram {
     void run(OrderItemsTable table) {
         System.out.println(
                 "Please, enter an action you want to perform with items\nFor help enter \'4\'"
@@ -15,7 +15,7 @@ class OrderItemProgram extends Program {
                 case 2:
                 case 3:
                 case 5:
-                    var array = num == 1 ? input.create((byte) 3) : input.update();
+                    var array = num == 1 ? input.create((byte) 3) : num == 2 ? input.update() : input.set();
                     if (num == 5) {
                         table.setOrderNumber(Integer.parseInt(array[0]));
                         break;
@@ -26,7 +26,7 @@ class OrderItemProgram extends Program {
                                     EOrderItemAttribute.valueOf(array[1]),
                                     Integer.parseInt(array[2]), array[0]
                             )
-                                    : table.delete(input.set()));
+                                    : table.delete(array[0]));
                     break;
 
                 case 4:

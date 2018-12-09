@@ -1,4 +1,4 @@
-package database.random;
+package random;
 
 import java.io.FileNotFoundException;
 import java.sql.PreparedStatement;
