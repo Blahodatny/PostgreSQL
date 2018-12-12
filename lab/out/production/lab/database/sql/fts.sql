@@ -8,3 +8,5 @@ FROM CUSTOMERS AS C
        INNER JOIN PRODUCTS AS P ON OI.Product_ID = P.Product_ID,
      TO_TSQUERY(?) AS q
 WHERE MAKE_TSVECTOR_CUS(C.Phone, C.FirstName, C.LastName, C.Street, C.City) @@ q
+   OR MAKE_TSVECTOR_ORD(O.ToStreet, O.ToCity) @@ q
+   OR MAKE_TSVECTOR_PR(P.Product_ID, P.ProductType) @@ q

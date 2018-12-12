@@ -5,12 +5,10 @@ import database.RetailService;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class Search extends RetailService {
-    final private String dir = path + "/src/database/sql/fts.sql";
+    final private String dir = path + "/src/database/sql/fts2.sql";
 
     // CUSTOMERS.Street && CUSTOMERS.City + ORDERS.ToStreet && ORDERS.ToCity
     public void search(String string) {
@@ -22,10 +20,9 @@ public class Search extends RetailService {
             var statement = connection.prepareStatement(
                     new String(Files.readAllBytes(Paths.get(dir)))
             );
-            statement.setString(1, str);
-            statement.executeQuery();
+//            statement.setString(1, str);
             var res = statement.executeQuery();
-            System.out.println(res);
+            System.out.println(res.next());
             res.close();
             statement.close();
             connection.commit();

@@ -24,4 +24,4 @@ $$ LANGUAGE 'plpgsql'
    IMMUTABLE;
 
 CREATE INDEX IF NOT EXISTS IDX_FTS_CUSTOMERS ON CUSTOMERS
-  USING gin (MAKE_TSVECTOR_CUS(Phone, FirstName, LastName, Street, City));
+  USING gin (MAKE_TSVECTOR_CUS(Phone, FirstName, LastName, Street, City))
