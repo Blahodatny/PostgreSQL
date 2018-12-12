@@ -34,4 +34,9 @@ public class Input implements IScanner {
         System.out.println("Please, enter identification of table you wanna delete\\set");
         return new String[]{scanner.next()};
     }
+
+    public String search() {
+        System.out.println("Please, enter a string you wanna find");
+        return scanner.next();
+    }
 }
