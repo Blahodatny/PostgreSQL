@@ -3,6 +3,7 @@
     <words>
       <w>maxprodid</w>
       <w>maxquan</w>
+      <w>tsvector</w>
     </words>
   </dictionary>
 </component>

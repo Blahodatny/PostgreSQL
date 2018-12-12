@@ -1,6 +1,6 @@
 package program;
 
-import database.operators.Initialization;
+import database.RetailService;
 import program.events.CustomerProgram;
 import program.events.OrderProgram;
 import random.Randomize;
@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Program {
     private final Scanner scanner = new Scanner(System.in);
 
-    public void run(Initialization service) {
+    public void run(RetailService service) {
         System.out.println(
                 "Please, enter an action you want to perform\nFor help enter \'4\'"
         );

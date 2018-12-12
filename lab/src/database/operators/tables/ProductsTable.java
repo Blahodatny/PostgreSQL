@@ -2,6 +2,9 @@ package database.operators.tables;
 
 import database.RetailService;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -10,7 +13,8 @@ public class ProductsTable extends RetailService {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "INSERT INTO PRODUCTS (Product_ID, ProductType, isNew) VALUES (?, ?, ?)"
+                    "INSERT INTO PRODUCTS (Product_ID, ProductType, isNew)\n" +
+                            "VALUES (?, ?, ?)"
             );
             statement.setString(1, productID);
             statement.setString(2, productType);
@@ -26,9 +30,12 @@ public class ProductsTable extends RetailService {
         try {
             connection.setAutoCommit(false);
             var statement = connection.prepareStatement(
-                    "SELECT Product_ID FROM (" +
-                            "SELECT Product_ID, ROW_NUMBER () OVER (ORDER BY Product_ID) FROM PRODUCTS" +
-                            ") X WHERE ROW_NUMBER = ?");
+                    new String(Files.readAllBytes(
+                            Paths.get(System.getProperty("user.dir") +
+                                    "/src/database/sql/products/getRow.sql"
+                            )
+                    ))
+            );
             statement.setInt(1, row);
             var res = statement.executeQuery();
             res.next();
@@ -36,7 +43,7 @@ public class ProductsTable extends RetailService {
             res.close();
             statement.close();
             connection.commit();
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             printError(e);
         }
         return productID;
