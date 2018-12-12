@@ -87,7 +87,7 @@
       <Comment>standard public schema</Comment>
       <StateNumber>351</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionTimestamp>2018-12-12.15:34:37.759</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2018-12-12.18:56:24.807</IntrospectionTimestamp>
       <IntrospectionStateNumber>771</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>

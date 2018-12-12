@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ProductsTable extends RetailService {
+    final private String dir = path + "/src/database/sql/products/getRow.sql";
+
     public PreparedStatement insert(String productID, String productType, boolean isNew) {
         PreparedStatement statement = null;
         try {
@@ -30,11 +32,7 @@ public class ProductsTable extends RetailService {
         try {
             connection.setAutoCommit(false);
             var statement = connection.prepareStatement(
-                    new String(Files.readAllBytes(
-                            Paths.get(System.getProperty("user.dir") +
-                                    "/src/database/sql/products/getRow.sql"
-                            )
-                    ))
+                    new String(Files.readAllBytes(Paths.get(dir)))
             );
             statement.setInt(1, row);
             var res = statement.executeQuery();

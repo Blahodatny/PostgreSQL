@@ -1,5 +1,0 @@
-SELECT Product_ID
-FROM (
-       SELECT Product_ID, ROW_NUMBER() OVER (ORDER BY Product_ID) FROM PRODUCTS
-     ) X
-WHERE ROW_NUMBER = ?

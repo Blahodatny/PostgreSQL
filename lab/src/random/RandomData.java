@@ -17,7 +17,7 @@ import java.util.stream.IntStream;
 class RandomData extends RetailService {
     private Consumer<Supplier<PreparedStatement>> consumer;
     final private ProductsTable productsTable = new ProductsTable();
-    final private String dir = System.getProperty("user.dir") + "/data/";
+    final private String dir = path + "/data/";
     final private byte MAXQUAN = 100;
     final private byte MAXPRODID = 5;
 

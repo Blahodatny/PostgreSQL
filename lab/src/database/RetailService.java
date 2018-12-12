@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 
 public class RetailService {
     protected static Connection connection;
+    protected final String path = System.getProperty("user.dir");
 
     protected RetailService() {
     }
