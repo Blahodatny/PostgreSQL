@@ -13,8 +13,8 @@ CREATE OR REPLACE FUNCTION MAKE_TSVECTOR_ORD(ToStreet text, ToCity text)
   RETURNS TSVECTOR AS
 $$
 BEGIN
-  RETURN (SETWEIGHT(TO_TSVECTOR('english', ToStreet), 'E')) ||
-         SETWEIGHT(TO_TSVECTOR('english', ToCity), 'E');
+  RETURN (SETWEIGHT(TO_TSVECTOR('english', ToStreet), 'D')) ||
+         SETWEIGHT(TO_TSVECTOR('english', ToCity), 'D');
 END
 $$ LANGUAGE 'plpgsql'
    IMMUTABLE;
