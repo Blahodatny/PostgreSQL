@@ -15,7 +15,7 @@ public class SearchProgram implements IScanner, IInput {
             var num = scanner.nextByte();
             switch (num) {
                 case 1:
-                    search.fts(input.search());
+                    search.mandatoryEntry(input.search());
                     break;
 
                 case 2:
