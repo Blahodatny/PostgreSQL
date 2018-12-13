@@ -1,1 +1,0 @@
-SELECT Phone FROM customers WHERE make_tsvector_cus(phone, firstname, lastname, street, city) @@ to_tsquery('Dima');
