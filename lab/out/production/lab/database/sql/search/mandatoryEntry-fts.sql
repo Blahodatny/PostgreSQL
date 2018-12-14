@@ -2,7 +2,7 @@
 --                      || O.ToStreet || O.ToCity || P.Product_ID || P.ProductType,
 --                    q,
 --                    'StartSel=\u001B[34m, StopSel=\u001B[0m')
-SELECT ts_headline(C.Phone, q, 'StartSel=\u001B[34m, StopSel=\u001B[0m') || C.FirstName
+SELECT ts_headline(C.Phone, q, 'StartSel=\u001B[34m, StopSel=\u001B[0m')
 FROM CUSTOMERS AS C
        INNER JOIN ORDERS AS O ON C.Phone = O.Phone
        INNER JOIN ORDER_ITEMS AS OI ON O.Order_Number = OI.Order_Number
