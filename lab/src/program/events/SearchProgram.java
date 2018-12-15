@@ -1,7 +1,7 @@
 package program.events;
 
 import database.search.Search;
-import database.search.Trigram;
+import database.search.LikeSearch;
 
 public class SearchProgram implements interfaces.IScanner, interfaces.IInput {
     public void run() {
@@ -12,7 +12,7 @@ public class SearchProgram implements interfaces.IScanner, interfaces.IInput {
             var num = scanner.nextByte();
             switch (num) {
                 case 1:
-                    System.out.println(new Trigram().trigramSearch(input.search()));
+                    System.out.println(new LikeSearch().search(input.search()));
                     break;
 
                 case 2:
@@ -24,8 +24,8 @@ public class SearchProgram implements interfaces.IScanner, interfaces.IInput {
 
                 case 4:
                     System.out.println(
-                            "1 - trigram search\n" +
-                                    "2 - LIKE search\n" +
+                            "1 - LIKE search\n" +
+                                    "2 - trigram search\n" +
                                     "3 - mandatory entry\n" +
                                     "4 - help\n" +
                                     "5 - non-entry\n" +

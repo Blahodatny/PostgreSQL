@@ -22,7 +22,9 @@ public class Search extends database.RetailService {
                             )
                     )
             );
-            statement.setString(1, num == 2 ? '%' + string + '%' : string);
+            for (byte i = 1; i < (num == 2 ? 9 : 2); i++)
+                statement.setString(i, string);
+            System.out.println(statement.toString());
             var res = statement.executeQuery();
             while (res.next()) {
                 var item = new String[num == 2 ? 11 : 3];

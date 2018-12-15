@@ -6,12 +6,12 @@ import database.operators.enums.EProductAttribute;
 
 import java.util.List;
 
-public class Trigram extends database.RetailService {
+public class LikeSearch extends database.RetailService {
     final private String[] tables = new String[]{
             "CUSTOMERS", "ORDERS", "PRODUCTS"
     };
 
-    public List<String> trigramSearch(String string) {
+    public List<String> search(String string) {
         List<String> list = new java.util.ArrayList<>();
         try {
             connection.setAutoCommit(false);
@@ -24,11 +24,10 @@ public class Trigram extends database.RetailService {
                     var name = item.name();
                     if (i == 1 && name.equals("Phone")) continue;
                     var statement = connection.prepareStatement(
-                            "SELECT " + name + " FROM " + tables[i] + " WHERE " + name + " % ?"
+                            "SELECT " + name + " FROM " + tables[i] + " WHERE " + name + " LIKE ?"
                     );
-                    statement.setString(1, string);
+                    statement.setString(1, '%' + string + '%');
                     var res = statement.executeQuery();
-                    System.out.println(statement.toString());
                     if (res.next())
                         list.add(res.getString(name));
                     close(res, statement);
