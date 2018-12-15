@@ -1,13 +1,5 @@
--- SELECT TS_HEADLINE(C.Phone || C.FirstName || C.LastName || C.Street || C.City
---                      || O.ToStreet || O.ToCity || P.Product_ID || P.ProductType,
---                    q,
---                    'StartSel=\u001B[34m, StopSel=\u001B[0m')
-SELECT ts_headline(C.Phone, q, 'StartSel=\u001B[34m, StopSel=\u001B[0m')
-FROM CUSTOMERS AS C
-       INNER JOIN ORDERS AS O ON C.Phone = O.Phone
-       INNER JOIN ORDER_ITEMS AS OI ON O.Order_Number = OI.Order_Number
-       INNER JOIN PRODUCTS AS P ON OI.Product_ID = P.Product_ID,
+SELECT FirstName, LastName, TS_HEADLINE(Phone, q, 'StartSel=\u001B[34m, StopSel=\u001B[0m')
+FROM CUSTOMERS,
      TO_TSQUERY(?) AS q
-WHERE MAKE_TSVECTOR_CUS(C.Phone, C.FirstName, C.LastName, C.Street, C.City) @@ q
-   OR MAKE_TSVECTOR_ORD(O.ToStreet, O.ToCity) @@ q
-   OR MAKE_TSVECTOR_PR(P.Product_ID, P.ProductType) @@ q
+WHERE MAKE_TSVECTOR_CUS(Phone, FirstName, LastName, Street, City) @@ q
+ORDER BY TS_RANK(MAKE_TSVECTOR_CUS(Phone, FirstName, LastName, Street, City), q)

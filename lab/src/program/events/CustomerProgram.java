@@ -16,7 +16,7 @@ public class CustomerProgram implements interfaces.IScanner, interfaces.IInput {
                 case 1:
                 case 2:
                 case 3:
-                    var array = num == 1 ? input.create((byte) 1) : num == 2 ? input.update() : input.set();
+                    var array = num == 1 ? input.create(num) : num == 2 ? input.update() : input.set();
                     table.setPhone(array[0]);
                     table.operate(() ->
                             num == 1 ? table.insert(array[1], array[2], array[3], array[4])
