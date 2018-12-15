@@ -4,6 +4,8 @@ import database.search.Search;
 import interfaces.IInput;
 import interfaces.IScanner;
 
+import java.util.Arrays;
+
 public class SearchProgram implements IScanner, IInput {
     private final Search search = new Search();
 
@@ -15,16 +17,17 @@ public class SearchProgram implements IScanner, IInput {
             var num = scanner.nextByte();
             switch (num) {
                 case 1:
-                    search.mandatoryEntry(input.search());
+                    System.out.println(search.trigramSearch(input.search()));
                     break;
 
                 case 2:
+                    search.likeSearch(input.search()).stream().map(Arrays::toString).forEach(System.out::println);
                     break;
 
                 case 4:
                     System.out.println(
-                            "1 - full text search\n" +
-                                    "2 - update customer\n" +
+                            "1 - trigram search\n" +
+                                    "2 - LIKE search\n" +
                                     "4 - help\n" +
                                     "any other - exit to main loop"
                     );
