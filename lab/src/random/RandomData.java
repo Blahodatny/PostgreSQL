@@ -1,6 +1,5 @@
 package random;
 
-import database.RetailService;
 import database.operators.tables.CustomersTable;
 import database.operators.tables.OrderItemsTable;
 import database.operators.tables.ProductsTable;
@@ -14,7 +13,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
-class RandomData extends RetailService {
+class RandomData extends database.RetailService {
     private Consumer<Supplier<PreparedStatement>> consumer;
     final private ProductsTable productsTable = new ProductsTable();
     final private String dir = path + "/data/";

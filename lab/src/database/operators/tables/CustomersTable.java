@@ -1,12 +1,11 @@
 package database.operators.tables;
 
-import database.RetailService;
 import database.operators.enums.ECustomerAttribute;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class CustomersTable extends RetailService {
+public class CustomersTable extends database.RetailService {
     private String phone;
 
     public CustomersTable() {

@@ -3,9 +3,8 @@ package input;
 import database.operators.enums.ECustomerAttribute;
 import database.operators.enums.EOrderAttribute;
 import database.operators.enums.EOrderItemAttribute;
-import interfaces.IScanner;
 
-public class Input implements IScanner {
+public class Input implements interfaces.IScanner {
     public String[] create(byte num) {
         System.out.println("Please, enter your credentials");
         scanner.nextLine();

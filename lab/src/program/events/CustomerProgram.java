@@ -2,10 +2,8 @@ package program.events;
 
 import database.operators.enums.ECustomerAttribute;
 import database.operators.tables.CustomersTable;
-import interfaces.IInput;
-import interfaces.IScanner;
 
-public class CustomerProgram implements IScanner, IInput {
+public class CustomerProgram implements interfaces.IScanner, interfaces.IInput {
     private final CustomersTable table = new CustomersTable();
 
     public void run() {

@@ -15,4 +15,3 @@ FROM CUSTOMERS AS C
        INNER JOIN PRODUCTS AS P ON OI.Product_ID = P.Product_ID
 WHERE C.Phone || C.FirstName || C.LastName || C.Street || C.City ||
       O.ToStreet || O.ToCity || P.Product_ID || P.ProductType LIKE ?
-

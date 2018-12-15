@@ -1,10 +1,6 @@
 package database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.function.Supplier;
+import java.sql.*;
 
 public class RetailService {
     protected static Connection connection;
@@ -24,7 +20,7 @@ public class RetailService {
         System.out.println("Opened database successfully!!!");
     }
 
-    public void operate(Supplier<PreparedStatement> supplier) {
+    public void operate(java.util.function.Supplier<PreparedStatement> supplier) {
         try {
             connection.setAutoCommit(false);
             var statement = supplier.get();
@@ -44,7 +40,13 @@ public class RetailService {
         System.exit(0);
     }
 
-    public void closeConnection() {
+    protected void close(ResultSet res, PreparedStatement st) throws SQLException {
+        res.close();
+        st.close();
+        connection.commit();
+    }
+
+    public void close() {
         try {
             connection.close();
         } catch (SQLException e) {

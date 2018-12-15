@@ -1,17 +1,11 @@
 package program;
 
-import database.RetailService;
-import program.events.CustomerProgram;
-import program.events.OrderProgram;
-import program.events.SearchProgram;
-import random.Randomize;
-
 import java.util.Scanner;
 
 public class Program {
     private final Scanner scanner = new Scanner(System.in);
 
-    public void run(RetailService service) {
+    public void run(database.RetailService service) {
         System.out.println(
                 "Please, enter an action you want to perform\nFor help enter \'4\'"
         );
@@ -19,15 +13,15 @@ public class Program {
             var num = scanner.nextByte();
             switch (num) {
                 case 1:
-                    new CustomerProgram().run();
+                    new program.events.CustomerProgram().run();
                     break;
 
                 case 2:
-                    new OrderProgram().run();
+                    new program.events.OrderProgram().run();
                     break;
 
                 case 3:
-                    new Randomize(service::operate).randomize();
+                    new random.Randomize(service::operate).randomize();
                     break;
 
                 case 4:
@@ -42,7 +36,7 @@ public class Program {
                     break;
 
                 case 5:
-                    new SearchProgram().run();
+                    new program.events.SearchProgram().run();
                     break;
 
                 default:

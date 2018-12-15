@@ -1,12 +1,10 @@
 package random;
 
-import java.io.FileNotFoundException;
-import java.sql.PreparedStatement;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class Randomize extends RandomData {
-    public Randomize(Consumer<Supplier<PreparedStatement>> consumer) {
+    public Randomize(Consumer<Supplier<java.sql.PreparedStatement>> consumer) {
         super(consumer);
     }
 
@@ -15,7 +13,7 @@ public class Randomize extends RandomData {
             insertCustomers("Customers.txt");
             insertProducts("Products.txt");
             insertOrders("Orders.txt");
-        } catch (FileNotFoundException e) {
+        } catch (java.io.FileNotFoundException e) {
             printError(e);
         }
     }

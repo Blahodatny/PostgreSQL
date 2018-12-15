@@ -2,10 +2,8 @@ package program.events;
 
 import database.operators.enums.EOrderAttribute;
 import database.operators.tables.OrderItemsTable;
-import interfaces.IInput;
-import interfaces.IScanner;
 
-public class OrderProgram implements IScanner, IInput {
+public class OrderProgram implements interfaces.IScanner, interfaces.IInput {
     private final OrderItemsTable table = new OrderItemsTable();
 
     public void run() {

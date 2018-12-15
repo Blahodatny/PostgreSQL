@@ -2,10 +2,8 @@ package program.events;
 
 import database.operators.enums.EOrderItemAttribute;
 import database.operators.tables.OrderItemsTable;
-import interfaces.IInput;
-import interfaces.IScanner;
 
-class OrderItemProgram implements IScanner, IInput {
+class OrderItemProgram implements interfaces.IScanner, interfaces.IInput {
     void run(OrderItemsTable table) {
         System.out.println(
                 "Please, enter an action you want to perform with items\nFor help enter \'4\'"

@@ -1,14 +1,9 @@
 package database.operators.tables;
 
-import database.RetailService;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class ProductsTable extends RetailService {
+public class ProductsTable extends database.RetailService {
     final private String dir = path + "/src/database/sql/products/getRow.sql";
 
     public PreparedStatement insert(String productID, String productType, boolean isNew) {
@@ -32,16 +27,16 @@ public class ProductsTable extends RetailService {
         try {
             connection.setAutoCommit(false);
             var statement = connection.prepareStatement(
-                    new String(Files.readAllBytes(Paths.get(dir)))
+                    new String(
+                            java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(dir))
+                    )
             );
             statement.setInt(1, row);
             var res = statement.executeQuery();
             res.next();
             productID = res.getString(1);
-            res.close();
-            statement.close();
-            connection.commit();
-        } catch (SQLException | IOException e) {
+            close(res, statement);
+        } catch (SQLException | java.io.IOException e) {
             printError(e);
         }
         return productID;

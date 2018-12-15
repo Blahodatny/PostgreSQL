@@ -1,13 +1,11 @@
 package database.operators.tables;
 
-import database.RetailService;
 import database.operators.enums.EOrderAttribute;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-public class OrdersTable extends RetailService {
+public class OrdersTable extends database.RetailService {
     int orderNumber;
 
     public int getOrderNumber() {
@@ -23,7 +21,8 @@ public class OrdersTable extends RetailService {
             connection.setAutoCommit(false);
             var statement = connection.prepareStatement(
                     "INSERT INTO ORDERS (Phone, ToStreet, ToCity, ShipDate)\n" +
-                            "VALUES (?, ?, ?, CURRENT_TIMESTAMP(0))", Statement.RETURN_GENERATED_KEYS
+                            "VALUES (?, ?, ?, CURRENT_TIMESTAMP(0))",
+                    java.sql.Statement.RETURN_GENERATED_KEYS
             );
             statement.setString(1, phone);
             statement.setString(2, toStreet);
@@ -32,9 +31,7 @@ public class OrdersTable extends RetailService {
             var res = statement.getGeneratedKeys();
             res.next();
             orderNumber = res.getInt(1);
-            res.close();
-            statement.close();
-            connection.commit();
+            close(res, statement);
         } catch (SQLException e) {
             printError(e);
         }

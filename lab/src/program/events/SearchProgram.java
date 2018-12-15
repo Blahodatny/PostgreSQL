@@ -1,12 +1,8 @@
 package program.events;
 
 import database.search.Search;
-import interfaces.IInput;
-import interfaces.IScanner;
 
-import java.util.Arrays;
-
-public class SearchProgram implements IScanner, IInput {
+public class SearchProgram implements interfaces.IScanner, interfaces.IInput {
     private final Search search = new Search();
 
     public void run() {
@@ -21,7 +17,11 @@ public class SearchProgram implements IScanner, IInput {
                     break;
 
                 case 2:
-                    search.likeSearch(input.search()).stream().map(Arrays::toString).forEach(System.out::println);
+                    search.likeSearch(input.search())
+                            .stream().map(java.util.Arrays::toString).forEach(System.out::println);
+                    break;
+
+                case 3:
                     break;
 
                 case 4:
@@ -31,6 +31,9 @@ public class SearchProgram implements IScanner, IInput {
                                     "4 - help\n" +
                                     "any other - exit to main loop"
                     );
+                    break;
+
+                case 5:
                     break;
 
                 default:
