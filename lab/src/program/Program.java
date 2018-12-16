@@ -1,10 +1,6 @@
 package program;
 
-import java.util.Scanner;
-
-public class Program {
-    private final Scanner scanner = new Scanner(System.in);
-
+public class Program implements interfaces.IScanner {
     public void run(database.RetailService service) {
         System.out.println(
                 "Please, enter an action you want to perform\nFor help enter \'4\'"
