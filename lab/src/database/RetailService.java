@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class RetailService {
     protected static Connection connection;
-    protected final String path = System.getProperty("user.dir");
+    protected final String PATH = System.getProperty("user.dir");
 
     protected RetailService() {
     }

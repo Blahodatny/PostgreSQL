@@ -7,7 +7,7 @@ import database.operators.enums.EProductAttribute;
 import java.util.List;
 
 public class LikeSearch extends database.RetailService {
-    final private String[] tables = new String[]{
+    final private String[] TABLES = new String[]{
             "CUSTOMERS", "ORDERS", "PRODUCTS"
     };
 
@@ -15,7 +15,7 @@ public class LikeSearch extends database.RetailService {
         List<String> list = new java.util.ArrayList<>();
         try {
             connection.setAutoCommit(false);
-            for (byte i = 0; i < tables.length; i++)
+            for (byte i = 0; i < TABLES.length; i++)
                 for (var item :
                         i == 0 ? ECustomerAttribute.values()
                                 : i == 1 ? EOrderAttribute.values()
@@ -24,7 +24,7 @@ public class LikeSearch extends database.RetailService {
                     var name = item.name();
                     if (i == 1 && name.equals("Phone")) continue;
                     var statement = connection.prepareStatement(
-                            "SELECT " + name + " FROM " + tables[i] + " WHERE " + name + " LIKE ?"
+                            "SELECT " + name + " FROM " + TABLES[i] + " WHERE " + name + " LIKE ?"
                     );
                     statement.setString(1, '%' + string + '%');
                     var res = statement.executeQuery();

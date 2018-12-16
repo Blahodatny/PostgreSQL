@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ProductsTable extends database.RetailService {
-    final private String sql = path + "/src/database/sql/products/getRow.sql";
+    final private String SQL = PATH + "/src/database/sql/products/getRow.sql";
 
     public PreparedStatement insert(String productID, String productType, boolean isNew) {
         PreparedStatement statement = null;
@@ -28,7 +28,7 @@ public class ProductsTable extends database.RetailService {
             connection.setAutoCommit(false);
             var statement = connection.prepareStatement(
                     new String(
-                            java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(sql))
+                            java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(SQL))
                     )
             );
             statement.setInt(1, row);

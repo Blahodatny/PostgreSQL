@@ -3,7 +3,7 @@ package database.search;
 import java.util.List;
 
 public class Search extends database.RetailService {
-    final private String sql = path + "/src/database/sql/search/";
+    final private String SQL = PATH + "/src/database/sql/search/";
 
     public List<String[]> search(byte num, String string) {
         List<String[]> list = new java.util.ArrayList<>();
@@ -13,7 +13,7 @@ public class Search extends database.RetailService {
                     new String(
                             java.nio.file.Files.readAllBytes(
                                     java.nio.file.Paths.get(
-                                            sql + (num == 2 ? "allTablesSearch-trigram.sql"
+                                            SQL + (num == 2 ? "allTablesSearch-trigram.sql"
                                                     : num == 3 ? "mandatoryEntry-fts.sql"
                                                     : "nonEntry-fts.sql")
                                     )
