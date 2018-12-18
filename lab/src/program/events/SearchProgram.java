@@ -12,7 +12,7 @@ public class SearchProgram implements interfaces.IScanner, interfaces.IInput {
             var num = scanner.nextByte();
             switch (num) {
                 case 1:
-                    System.out.println(new LikeSearch().search(input.search()));
+                    System.out.println(new LikeSearch().search(input.search().get(0)));
                     break;
 
                 case 2:

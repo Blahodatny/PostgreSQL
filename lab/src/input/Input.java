@@ -4,6 +4,10 @@ import database.operators.enums.ECustomerAttribute;
 import database.operators.enums.EOrderAttribute;
 import database.operators.enums.EOrderItemAttribute;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
+
 public class Input implements interfaces.IScanner {
     public String[] create(byte num) {
         System.out.println("Please, enter your credentials");
@@ -34,8 +38,13 @@ public class Input implements interfaces.IScanner {
         return new String[]{scanner.next()};
     }
 
-    public String search() {
+    public List<String> search() {
         System.out.println("Please, enter a string you wanna find");
-        return scanner.next();
+        List<String> list = new ArrayList<>();
+        scanner.nextLine();
+        var st = new StringTokenizer(scanner.nextLine(), " ");
+        while (st.hasMoreTokens())
+            list.add(st.nextToken());
+        return list;
     }
 }

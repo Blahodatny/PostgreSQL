@@ -5,7 +5,7 @@ import java.util.List;
 public class Search extends database.RetailService {
     final private String SQL = PATH + "/src/database/sql/search/";
 
-    public List<String[]> search(byte num, String string) {
+    public List<String[]> search(byte num, List<String> str) {
         List<String[]> list = new java.util.ArrayList<>();
         try {
             connection.setAutoCommit(false);
@@ -21,7 +21,7 @@ public class Search extends database.RetailService {
                     )
             );
             for (byte i = 1; i < (num == 2 ? 9 : 2); i++)
-                statement.setString(i, string);
+                statement.setString(i, String.join(" | ", str));
             var res = statement.executeQuery();
             while (res.next()) {
                 var item = new String[num == 2 ? 11 : 3];
