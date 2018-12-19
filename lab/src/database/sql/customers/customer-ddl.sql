@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS CUSTOMERS
+CREATE TABLE IF NOT EXISTS customers
 (
   Phone     VARCHAR(20) NOT NULL,
   FirstName VARCHAR(20) NOT NULL,
@@ -8,25 +8,25 @@ CREATE TABLE IF NOT EXISTS CUSTOMERS
   PRIMARY KEY (Phone)
 );
 
-CREATE UNIQUE INDEX IF NOT EXISTS CUSTOMERS_PHONE_UINDEX ON CUSTOMERS (Phone);
+CREATE UNIQUE INDEX IF NOT EXISTS customers_phone_uindex ON customers (Phone);
 
-CREATE OR REPLACE FUNCTION MAKE_TSVECTOR_CUS(Phone text, FirstName text, LastName text, Street text, City text)
+CREATE OR REPLACE FUNCTION make_tsvector_cus(Phone text, FirstName text, LastName text, Street text, City text)
   RETURNS TSVECTOR AS
 $$
 BEGIN
-  RETURN (SETWEIGHT(TO_TSVECTOR('english', Phone), 'A')) ||
-         SETWEIGHT(TO_TSVECTOR('english', FirstName), 'B') ||
-         SETWEIGHT(TO_TSVECTOR('english', LastName), 'B') ||
-         SETWEIGHT(TO_TSVECTOR('english', Street), 'C') ||
-         SETWEIGHT(TO_TSVECTOR('english', City), 'C');
+  RETURN (setweight(to_tsvector('english', Phone), 'A')) ||
+         setweight(to_tsvector('english', FirstName), 'B') ||
+         setweight(to_tsvector('english', LastName), 'B') ||
+         setweight(to_tsvector('english', Street), 'C') ||
+         setweight(to_tsvector('english', City), 'C');
 END
 $$ LANGUAGE 'plpgsql'
    IMMUTABLE;
 
-CREATE INDEX IF NOT EXISTS IDX_FTS_CUSTOMERS ON CUSTOMERS
-  USING gin (MAKE_TSVECTOR_CUS(Phone, FirstName, LastName, Street, City));
+CREATE INDEX IF NOT EXISTS idx_fts_customers ON customers
+  USING gin (make_tsvector_cus(Phone, FirstName, LastName, Street, City));
 
-CREATE EXTENSION IF NOT EXISTS PG_TRGM;
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
 
-CREATE INDEX IF NOT EXISTS CUSTOMERS_TRGM_IDX ON CUSTOMERS
-  USING gin (MAKE_TSVECTOR_CUS(Phone, FirstName, LastName, Street, City))
+CREATE INDEX IF NOT EXISTS customers_trgm_idx ON customers
+  USING gin (make_tsvector_cus(Phone, FirstName, LastName, Street, City))

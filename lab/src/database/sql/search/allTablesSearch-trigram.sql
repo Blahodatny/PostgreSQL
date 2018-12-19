@@ -9,10 +9,10 @@ SELECT C.Phone,
        OI.Quantity,
        P.Product_ID,
        P.ProductType
-FROM CUSTOMERS AS C
-       INNER JOIN ORDERS AS O ON C.Phone = O.Phone
-       INNER JOIN ORDER_ITEMS AS OI ON O.Order_Number = OI.Order_Number
-       INNER JOIN PRODUCTS AS P ON OI.Product_ID = P.Product_ID
+FROM customers AS C
+       INNER JOIN orders AS O ON C.Phone = O.Phone
+       INNER JOIN order_items AS OI ON O.Order_Number = OI.Order_Number
+       INNER JOIN products AS P ON OI.Product_ID = P.Product_ID
 WHERE C.FirstName % ?
    OR C.LastName % ?
    OR C.Street % ?

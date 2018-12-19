@@ -19,7 +19,7 @@ public class CustomersTable extends database.RetailService {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "INSERT INTO CUSTOMERS (Phone, FirstName, LastName, Street, City)\n" +
+                    "INSERT INTO customers (Phone, FirstName, LastName, Street, City)\n" +
                             "VALUES (?, ?, ?, ?, ?)"
             );
             statement.setString(1, phone);
@@ -36,7 +36,7 @@ public class CustomersTable extends database.RetailService {
     public PreparedStatement delete() {
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement("DELETE FROM CUSTOMERS WHERE Phone = ?");
+            statement = connection.prepareStatement("DELETE FROM customers WHERE Phone = ?");
             statement.setString(1, phone);
         } catch (SQLException e) {
             printError(e);
@@ -48,7 +48,7 @@ public class CustomersTable extends database.RetailService {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "UPDATE CUSTOMERS\n" +
+                    "UPDATE customers\n" +
                             "SET " + attribute.name() + " = ?\n" +
                             "WHERE Phone = ?"
             );

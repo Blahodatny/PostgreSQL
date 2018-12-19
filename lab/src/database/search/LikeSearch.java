@@ -8,7 +8,7 @@ import java.util.List;
 
 public class LikeSearch extends database.RetailService {
     final private String[] TABLES = new String[]{
-            "CUSTOMERS", "ORDERS", "PRODUCTS"
+            "customers", "orders", "products"
     };
 
     public List<String> search(String string) {

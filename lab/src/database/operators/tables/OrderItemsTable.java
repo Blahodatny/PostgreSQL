@@ -10,7 +10,7 @@ public class OrderItemsTable extends OrdersTable {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "INSERT INTO ORDER_ITEMS (Order_Number, Product_ID, Quantity)\n" +
+                    "INSERT INTO order_items (Order_Number, Product_ID, Quantity)\n" +
                             "VALUES (?, ?, ?)"
             );
             statement.setInt(1, orderNumber);
@@ -27,7 +27,7 @@ public class OrderItemsTable extends OrdersTable {
         try {
             statement = connection.prepareStatement(
                     "DELETE\n" +
-                            "FROM ORDER_ITEMS\n" +
+                            "FROM order_items\n" +
                             "WHERE Order_number = ?\n" +
                             "AND Product_ID = ?"
             );
@@ -43,7 +43,7 @@ public class OrderItemsTable extends OrdersTable {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "UPDATE ORDER_ITEMS\n" +
+                    "UPDATE order_items\n" +
                             "SET " + attribute.name() + " = ?\n" +
                             "WHERE Order_number = ?\n" +
                             "AND Product_ID = ?"

@@ -10,7 +10,7 @@ public class ProductsTable extends database.RetailService {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "INSERT INTO PRODUCTS (Product_ID, ProductType, isNew)\n" +
+                    "INSERT INTO products (Product_ID, ProductType, isNew)\n" +
                             "VALUES (?, ?, ?)"
             );
             statement.setString(1, productID);

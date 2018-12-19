@@ -20,7 +20,7 @@ public class OrdersTable extends database.RetailService {
         try {
             connection.setAutoCommit(false);
             var statement = connection.prepareStatement(
-                    "INSERT INTO ORDERS (Phone, ToStreet, ToCity, ShipDate)\n" +
+                    "INSERT INTO orders (Phone, ToStreet, ToCity, ShipDate)\n" +
                             "VALUES (?, ?, ?, CURRENT_TIMESTAMP(0))",
                     java.sql.Statement.RETURN_GENERATED_KEYS
             );
@@ -40,7 +40,7 @@ public class OrdersTable extends database.RetailService {
     public PreparedStatement delete() {
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement("DELETE FROM ORDERS WHERE Order_number = ?");
+            statement = connection.prepareStatement("DELETE FROM orders WHERE Order_number = ?");
             statement.setInt(1, orderNumber);
         } catch (SQLException e) {
             printError(e);
@@ -52,7 +52,7 @@ public class OrdersTable extends database.RetailService {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "UPDATE ORDERS\n" +
+                    "UPDATE orders\n" +
                             "SET " + attribute.name() + " = ?\n" +
                             "WHERE Order_Number = ?"
             );
