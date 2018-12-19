@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS ORDERS
+CREATE TABLE IF NOT EXISTS orders
 (
   Order_Number SERIAL      NOT NULL,
   Phone        VARCHAR(20) NOT NULL,
@@ -6,23 +6,23 @@ CREATE TABLE IF NOT EXISTS ORDERS
   ToCity       TEXT        NOT NULL,
   ShipDate     TIMESTAMP   NOT NULL,
   PRIMARY KEY (Order_Number),
-  CONSTRAINT FK FOREIGN KEY (Phone) REFERENCES CUSTOMERS (Phone) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT fk FOREIGN KEY (Phone) REFERENCES customers (Phone) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE OR REPLACE FUNCTION MAKE_TSVECTOR_ORD(ToStreet text, ToCity text)
+CREATE OR REPLACE FUNCTION make_tsvector_ord(ToStreet text, ToCity text)
   RETURNS TSVECTOR AS
 $$
 BEGIN
-  RETURN (SETWEIGHT(TO_TSVECTOR('english', ToStreet), 'D')) ||
-         SETWEIGHT(TO_TSVECTOR('english', ToCity), 'D');
+  RETURN (setweight(to_tsvector('english', ToStreet), 'D')) ||
+         setweight(to_tsvector('english', ToCity), 'D');
 END
 $$ LANGUAGE 'plpgsql'
    IMMUTABLE;
 
-CREATE INDEX IF NOT EXISTS IDX_FTS_CUSTOMERS ON ORDERS
-  USING gin (MAKE_TSVECTOR_ORD(ToStreet, ToCity));
+CREATE INDEX IF NOT EXISTS idx_ftx_orders ON orders
+  USING gin (make_tsvector_ord(ToStreet, ToCity));
 
-CREATE EXTENSION IF NOT EXISTS PG_TRGM;
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
 
-CREATE INDEX IF NOT EXISTS ORDERS_TRGM_IDX ON ORDERS
-  USING gin (MAKE_TSVECTOR_ORD(ToStreet, ToCity))
+CREATE INDEX IF NOT EXISTS orders_trgm_idx ON orders
+  USING gin (make_tsvector_ord(ToStreet, ToCity))
