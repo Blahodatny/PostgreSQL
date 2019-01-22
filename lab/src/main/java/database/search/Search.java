@@ -11,7 +11,7 @@ import static java.nio.file.Files.readAllBytes;
 import static java.nio.file.Paths.get;
 
 public class Search extends RetailService {
-    final private String SQL = PATH + "/src/database/sql/search/";
+    final private String SQL = PATH + "/src/main/java/database/sql/search/";
 
     public List<String[]> search(byte num, List<String> str) {
         List<String[]> list = new ArrayList<>();

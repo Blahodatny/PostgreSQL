@@ -1,5 +1,6 @@
 package random;
 
+import database.RetailService;
 import database.operators.tables.CustomersTable;
 import database.operators.tables.OrderItemsTable;
 import database.operators.tables.ProductsTable;
@@ -13,10 +14,11 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
-class RandomData extends database.RetailService {
+import static java.util.Objects.requireNonNull;
+
+class RandomData extends RetailService {
     private Consumer<Supplier<PreparedStatement>> consumer;
     final private ProductsTable product = new ProductsTable();
-    final private String DIR = PATH + "/data/";
     final private byte MAXQUAN = 100;
     final private byte MAXPRODID = 5;
 
@@ -24,8 +26,14 @@ class RandomData extends database.RetailService {
         this.consumer = consumer;
     }
 
+    private String getFile(String file) {
+        return requireNonNull(
+                getClass().getClassLoader().getResource("data/" + file)
+        ).getFile();
+    }
+
     void insertCustomers(String file) throws FileNotFoundException {
-        var scanner = new Scanner(new File(DIR + file));
+        var scanner = new Scanner(new File(getFile(file)));
         var table = new CustomersTable();
         while (scanner.hasNextLine()) {
             table.setPhone(scanner.next());
@@ -36,7 +44,7 @@ class RandomData extends database.RetailService {
     }
 
     void insertOrders(String file) throws FileNotFoundException {
-        var scanner = new Scanner(new File(DIR + file));
+        var scanner = new Scanner(new File(getFile(file)));
         var table = new OrderItemsTable();
         var random = new Random();
         while (scanner.hasNextLine()) {
@@ -50,7 +58,7 @@ class RandomData extends database.RetailService {
     }
 
     void insertProducts(String file) throws FileNotFoundException {
-        var scanner = new Scanner(new File(DIR + file));
+        var scanner = new Scanner(new File(getFile(file)));
         while (scanner.hasNextLine())
             consumer.accept(() -> product.insert(scanner.next(), scanner.next(), scanner.nextBoolean()));
     }
