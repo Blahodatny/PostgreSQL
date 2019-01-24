@@ -5,6 +5,8 @@ import database.search.LikeSearch;
 import interfaces.DataInput;
 import interfaces.DataScanner;
 
+import java.util.Arrays;
+
 public class SearchProgram implements DataScanner, DataInput {
     public void run() {
         System.out.println(
@@ -21,7 +23,7 @@ public class SearchProgram implements DataScanner, DataInput {
                 case 3:
                 case 5:
                     new Search().search(num, input.search())
-                            .stream().map(java.util.Arrays::toString).forEach(System.out::println);
+                            .stream().map(Arrays::toString).forEach(System.out::println);
                     break;
 
                 case 4:
