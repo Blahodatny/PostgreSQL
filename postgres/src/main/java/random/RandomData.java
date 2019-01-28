@@ -26,14 +26,16 @@ class RandomData extends RetailService {
         this.consumer = consumer;
     }
 
-    private String getFile(String file) {
-        return requireNonNull(
-                getClass().getClassLoader().getResource("data/" + file)
-        ).getFile();
+    private Scanner getFile(String file) throws FileNotFoundException {
+        return new Scanner(
+                new File(requireNonNull(
+                        getClass().getClassLoader().getResource("data/" + file)
+                ).getFile())
+        );
     }
 
     void insertCustomers(String file) throws FileNotFoundException {
-        var scanner = new Scanner(new File(getFile(file)));
+        var scanner = getFile(file);
         var table = new CustomersTable();
         while (scanner.hasNextLine()) {
             table.setPhone(scanner.next());
@@ -44,7 +46,7 @@ class RandomData extends RetailService {
     }
 
     void insertOrders(String file) throws FileNotFoundException {
-        var scanner = new Scanner(new File(getFile(file)));
+        var scanner = getFile(file);
         var table = new OrderItemsTable();
         var random = new Random();
         while (scanner.hasNextLine()) {
@@ -58,7 +60,7 @@ class RandomData extends RetailService {
     }
 
     void insertProducts(String file) throws FileNotFoundException {
-        var scanner = new Scanner(new File(getFile(file)));
+        var scanner = getFile(file);
         while (scanner.hasNextLine())
             consumer.accept(() -> product.insert(scanner.next(), scanner.next(), scanner.nextBoolean()));
     }
