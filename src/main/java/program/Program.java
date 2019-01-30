@@ -18,15 +18,12 @@ public class Program implements DataScanner {
                 case 1:
                     new CustomerProgram().run();
                     break;
-
                 case 2:
                     new OrderProgram().run();
                     break;
-
                 case 3:
                     new Randomize(service::operate).randomize();
                     break;
-
                 case 4:
                     System.out.println(
                             "1 - work with customer\n" +
@@ -37,11 +34,9 @@ public class Program implements DataScanner {
                                     "any other - exit"
                     );
                     break;
-
                 case 5:
                     new SearchProgram().run();
                     break;
-
                 default:
                     return;
             }

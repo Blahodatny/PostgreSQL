@@ -18,14 +18,12 @@ public class SearchProgram implements DataScanner, DataInput {
                 case 1:
                     System.out.println(new LikeSearch().search(input.search().get(0)));
                     break;
-
                 case 2:
                 case 3:
                 case 5:
                     new Search().search(num, input.search())
                             .stream().map(Arrays::toString).forEach(System.out::println);
                     break;
-
                 case 4:
                     System.out.println(
                             "1 - LIKE search\n" +
@@ -36,7 +34,6 @@ public class SearchProgram implements DataScanner, DataInput {
                                     "any other - exit to main loop"
                     );
                     break;
-
                 default:
                     return;
             }

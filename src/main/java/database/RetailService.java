@@ -10,7 +10,6 @@ import static java.sql.DriverManager.getConnection;
 
 public class RetailService {
     protected static Connection connection;
-    protected final String PATH = System.getProperty("user.dir");
 
     protected RetailService() {
     }

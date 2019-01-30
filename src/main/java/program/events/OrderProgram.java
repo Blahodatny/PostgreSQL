@@ -30,7 +30,6 @@ public class OrderProgram implements DataScanner, DataInput {
                                 : table.delete());
                     }
                     break;
-
                 case 4:
                     System.out.println(
                             "1 - create a new order\n" +
@@ -43,11 +42,9 @@ public class OrderProgram implements DataScanner, DataInput {
                                     "any other - exit to main loop"
                     );
                     break;
-
                 case 6:
                     new OrderItemProgram().run(table);
                     break;
-
                 default:
                     return;
             }

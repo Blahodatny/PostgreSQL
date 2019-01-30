@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import static java.nio.file.Files.readAllBytes;
 
 public class ProductsTable extends RetailService {
-    final private String SQL = PATH + "/src/main/java/database/sql/products/getRow.sql";
+    final private static String SQL = "./src/main/java/database/sql/products/getRow.sql";
 
     public PreparedStatement insert(String productID, String productType, boolean isNew) {
         PreparedStatement statement = null;

@@ -25,7 +25,6 @@ public class CustomerProgram implements DataScanner, DataInput {
                                     : num == 2 ? table.update(CustomerAttribute.valueOf(array[1]), array[2])
                                     : table.delete());
                     break;
-
                 case 4:
                     System.out.println(
                             "1 - create a new customer\n" +
@@ -35,7 +34,6 @@ public class CustomerProgram implements DataScanner, DataInput {
                                     "any other - exit to main loop"
                     );
                     break;
-
                 default:
                     return;
             }

@@ -30,7 +30,6 @@ class OrderItemProgram implements DataScanner, DataInput {
                             )
                                     : table.delete(array[0]));
                     break;
-
                 case 4:
                     System.out.println(
                             "1 - add new item\n" +
@@ -42,7 +41,6 @@ class OrderItemProgram implements DataScanner, DataInput {
                                     "any other - exit to order loop"
                     );
                     break;
-
                 default:
                     return;
             }
