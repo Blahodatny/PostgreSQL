@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS order_items
+(
+  Item_ID      SERIAL      NOT NULL,
+  Quantity     INT         NOT NULL,
+  Order_Number INT         NOT NULL,
+  Product_ID   VARCHAR(20) NOT NULL,
+  PRIMARY KEY (Item_ID),
+  CONSTRAINT fk FOREIGN KEY (Order_number) REFERENCES orders (Order_number) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT fk1 FOREIGN KEY (Product_id) REFERENCES products (Product_ID) ON DELETE NO ACTION ON UPDATE CASCADE
+)

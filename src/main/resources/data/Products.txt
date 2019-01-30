@@ -1,0 +1,5 @@
+BMW Cars true
+JetBrains Companies false
+Windows Operating_Systems true
+Chrome IT true
+Skype Connection false
