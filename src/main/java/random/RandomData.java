@@ -40,7 +40,12 @@ class RandomData extends RetailService {
         while (scanner.hasNextLine()) {
             table.setPhone(scanner.next());
             consumer.accept(() ->
-                    table.insert(scanner.next(), scanner.next(), scanner.next() + " " + scanner.next(), scanner.next())
+                    table.insert(
+                            scanner.next(),
+                            scanner.next(),
+                            scanner.next() + " " + scanner.next(),
+                            scanner.next()
+                    )
             );
         }
     }

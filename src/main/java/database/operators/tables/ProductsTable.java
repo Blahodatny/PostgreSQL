@@ -3,6 +3,7 @@ package database.operators.tables;
 import database.RetailService;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -33,7 +34,7 @@ public class ProductsTable extends RetailService {
             connection.setAutoCommit(false);
             var statement = connection.prepareStatement(
                     new String(
-                            readAllBytes(java.nio.file.Paths.get(SQL))
+                            readAllBytes(Paths.get(SQL))
                     )
             );
             statement.setInt(1, row);

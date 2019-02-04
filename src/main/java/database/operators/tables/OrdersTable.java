@@ -5,6 +5,7 @@ import database.operators.enums.OrderAttribute;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class OrdersTable extends RetailService {
     int orderNumber;
@@ -23,7 +24,7 @@ public class OrdersTable extends RetailService {
             var statement = connection.prepareStatement(
                     "INSERT INTO orders (Phone, ToStreet, ToCity, ShipDate)\n" +
                             "VALUES (?, ?, ?, CURRENT_TIMESTAMP(0))",
-                    java.sql.Statement.RETURN_GENERATED_KEYS
+                    Statement.RETURN_GENERATED_KEYS
             );
             statement.setString(1, phone);
             statement.setString(2, toStreet);

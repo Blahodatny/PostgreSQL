@@ -25,7 +25,8 @@ public class LikeSearch extends RetailService {
                                 : ProductAttribute.values()
                 ) {
                     var name = item.name();
-                    if (i == 1 && name.equals("Phone")) continue;
+                    if (i == 1 && name.equals("Phone"))
+                        continue;
                     var statement = connection.prepareStatement(
                             "SELECT " + name + " FROM " + TABLES[i] + " WHERE " + name + " LIKE ?"
                     );
