@@ -72,6 +72,12 @@ class RandomData extends RetailService {
     void insertProducts(String file) throws FileNotFoundException {
         var scanner = getFile(file);
         while (scanner.hasNextLine())
-            consumer.accept(() -> product.insert(scanner.next(), scanner.next(), scanner.nextBoolean()));
+            consumer.accept(() ->
+                    product.insert(
+                            scanner.next(),
+                            scanner.next(),
+                            scanner.nextBoolean()
+                    )
+            );
     }
 }
