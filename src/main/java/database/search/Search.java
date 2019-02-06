@@ -18,15 +18,12 @@ public class Search extends RetailService {
         try {
             connection.setAutoCommit(false);
             var statement = connection.prepareStatement(
-                    new String(
-                            readAllBytes(
-                                    get(
-                                            SQL + (num == 2 ? "allTablesSearch-trigram.sql"
-                                                    : num == 3 ? "mandatoryEntry-fts.sql"
-                                                    : "nonEntry-fts.sql")
-                                    )
+                    new String(readAllBytes(get(
+                            SQL + (num == 2 ? "allTablesSearch-trigram.sql" :
+                                    num == 3 ? "mandatoryEntry-fts.sql" :
+                                            "nonEntry-fts.sql")
                             )
-                    )
+                    ))
             );
             for (byte i = 1; i < (num == 2 ? 9 : 2); i++)
                 statement.setString(i, String.join(" | ", str));

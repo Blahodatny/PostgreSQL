@@ -23,12 +23,15 @@ class OrderItemProgram implements DataScanner, DataInput {
                         break;
                     }
                     table.operate(() ->
-                            num == 1 ? table.insert(array[0], Integer.parseInt(array[1]))
-                                    : num == 2 ? table.update(
-                                    OrderItemAttribute.valueOf(array[1]),
-                                    Integer.parseInt(array[2]), array[0]
-                            )
-                                    : table.delete(array[0]));
+                            num == 1 ?
+                                    table.insert(array[0], Integer.parseInt(array[1])) :
+                                    num == 2 ?
+                                            table.update(
+                                                    OrderItemAttribute.valueOf(array[1]),
+                                                    Integer.parseInt(array[2]), array[0]
+                                            ) :
+                                            table.delete(array[0])
+                    );
                     break;
                 case 4:
                     System.out.println(

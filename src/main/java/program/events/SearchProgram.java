@@ -21,8 +21,11 @@ public class SearchProgram implements DataScanner, DataInput {
                 case 2:
                 case 3:
                 case 5:
-                    new Search().search(num, input.search())
-                            .stream().map(Arrays::toString).forEach(System.out::println);
+                    new Search()
+                            .search(num, input.search())
+                            .stream()
+                            .map(Arrays::toString)
+                            .forEach(System.out::println);
                     break;
                 case 4:
                     System.out.println(

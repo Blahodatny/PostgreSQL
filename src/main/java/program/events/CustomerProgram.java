@@ -21,9 +21,12 @@ public class CustomerProgram implements DataScanner, DataInput {
                     var array = num == 1 ? input.create(num) : num == 2 ? input.update() : input.set();
                     table.setPhone(array[0]);
                     table.operate(() ->
-                            num == 1 ? table.insert(array[1], array[2], array[3], array[4])
-                                    : num == 2 ? table.update(CustomerAttribute.valueOf(array[1]), array[2])
-                                    : table.delete());
+                            num == 1 ?
+                                    table.insert(array[1], array[2], array[3], array[4]) :
+                                    num == 2 ?
+                                            table.update(CustomerAttribute.valueOf(array[1]), array[2]) :
+                                            table.delete()
+                    );
                     break;
                 case 4:
                     System.out.println(

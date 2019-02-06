@@ -26,8 +26,11 @@ public class OrderProgram implements DataScanner, DataInput {
                     } else {
                         table.setOrderNumber(Integer.parseInt(array[0]));
                         if (num == 5) break;
-                        table.operate(() -> num == 2 ? table.update(OrderAttribute.valueOf(array[1]), array[2])
-                                : table.delete());
+                        table.operate(() ->
+                                num == 2 ?
+                                        table.update(OrderAttribute.valueOf(array[1]), array[2]) :
+                                        table.delete()
+                        );
                     }
                     break;
                 case 4:

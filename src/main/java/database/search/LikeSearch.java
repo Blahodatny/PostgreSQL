@@ -20,9 +20,9 @@ public class LikeSearch extends RetailService {
             connection.setAutoCommit(false);
             for (byte i = 0; i < TABLES.length; i++)
                 for (var item :
-                        i == 0 ? CustomerAttribute.values()
-                                : i == 1 ? OrderAttribute.values()
-                                : ProductAttribute.values()
+                        i == 0 ? CustomerAttribute.values() :
+                                i == 1 ? OrderAttribute.values() :
+                                        ProductAttribute.values()
                 ) {
                     var name = item.name();
                     if (i == 1 && name.equals("Phone"))
