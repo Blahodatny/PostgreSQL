@@ -1,0 +1,9 @@
+{
+  "collMod": "nodes",
+  "validator": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required":
+    }
+  }
+}
