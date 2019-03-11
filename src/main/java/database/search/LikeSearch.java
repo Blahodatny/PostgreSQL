@@ -19,16 +19,16 @@ public class LikeSearch extends RetailService {
         try {
             connection.setAutoCommit(false);
             for (byte i = 0; i < TABLES.length; i++)
-                for (var item :
-                        i == 0 ? CustomerAttribute.values() :
-                                i == 1 ? OrderAttribute.values() :
-                                        ProductAttribute.values()
+                for (var item : i == 0 ? CustomerAttribute.values() :
+                        i == 1 ? OrderAttribute.values() :
+                                ProductAttribute.values()
                 ) {
                     var name = item.name();
                     if (i == 1 && name.equals("Phone"))
                         continue;
                     var statement = connection.prepareStatement(
-                            "SELECT " + name + " FROM " + TABLES[i] + " WHERE " + name + " LIKE ?"
+                            "SELECT " + name + " FROM " + TABLES[i] +
+                                    " WHERE " + name + " LIKE ?"
                     );
                     statement.setString(1, '%' + string + '%');
                     var res = statement.executeQuery();

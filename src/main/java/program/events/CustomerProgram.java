@@ -10,7 +10,8 @@ public class CustomerProgram implements DataScanner, DataInput {
 
     public void run() {
         System.out.println(
-                "Please, enter an action you want to perform with customer\nFor help enter \'4\'"
+                "Please, enter an action you want" +
+                        "to perform with customer\nFor help enter \'4\'"
         );
         while (true) {
             var num = scanner.nextByte();
@@ -18,14 +19,15 @@ public class CustomerProgram implements DataScanner, DataInput {
                 case 1:
                 case 2:
                 case 3:
-                    var array = num == 1 ? input.create(num) : num == 2 ? input.update() : input.set();
+                    var array = num == 1 ? input.create(num) :
+                            num == 2 ? input.update() : input.set();
                     table.setPhone(array[0]);
-                    table.operate(() ->
-                            num == 1 ?
+                    table.operate(
+                            () -> num == 1 ?
                                     table.insert(array[1], array[2], array[3], array[4]) :
-                                    num == 2 ?
-                                            table.update(CustomerAttribute.valueOf(array[1]), array[2]) :
-                                            table.delete()
+                                    num == 2 ? table.update(
+                                            CustomerAttribute.valueOf(array[1]), array[2]
+                                    ) : table.delete()
                     );
                     break;
                 case 4:

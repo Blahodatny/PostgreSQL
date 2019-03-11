@@ -15,10 +15,9 @@ public class Input implements DataScanner {
         scanner.nextLine();
         var array = new String[num == 1 ? 5 : num == 2 ? 3 : 2];
         byte i = 0;
-        for (var attr :
-                num == 1 ? CustomerAttribute.values() :
-                        num == 2 ? OrderAttribute.values() :
-                                OrderItemAttribute.values()
+        for (var attr : num == 1 ? CustomerAttribute.values() :
+                num == 2 ? OrderAttribute.values() :
+                        OrderItemAttribute.values()
         ) {
             System.out.print(attr + ": ");
             array[i] = scanner.nextLine();
