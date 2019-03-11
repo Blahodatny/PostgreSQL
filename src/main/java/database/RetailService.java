@@ -18,7 +18,8 @@ public class RetailService {
         try {
             Class.forName("org.postgresql.Driver");
             connection = getConnection(
-                    "jdbc:postgresql://localhost:5432/" + db_name, user, password);
+                    "jdbc:postgresql://localhost:5432/" + db_name, user, password
+            );
         } catch (Exception e) {
             printError(e);
         }
