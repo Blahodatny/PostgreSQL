@@ -1,8 +1,0 @@
-spring:
-  data:
-    mongodb:
-      host: ds215208.mlab.com
-      port: 15208
-      username: Blahodatny
-      password: Dosdch872neun9ci2necm2cy83rbc
-      database: blazen
