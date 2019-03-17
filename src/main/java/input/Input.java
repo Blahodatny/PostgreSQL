@@ -34,7 +34,9 @@ public class Input implements DataScanner {
     }
 
     public String[] set() {
-        System.out.println("Please, enter identification of entity you wanna delete\\set");
+        System.out.println(
+                "Please, enter identification of entity you wanna delete\\set"
+        );
         return new String[]{scanner.next()};
     }
 
