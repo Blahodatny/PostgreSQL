@@ -1,12 +1,12 @@
 package program.events;
 
-import database.operators.enums.CustomerAttribute;
-import database.operators.tables.CustomersTable;
-import interfaces.DataInput;
-import interfaces.DataScanner;
+import dao.attributes.Customer;
+import dao.tables.Customers;
+import program.data.DataInput;
+import program.data.DataScanner;
 
 public class CustomerProgram implements DataScanner, DataInput {
-    private final CustomersTable table = new CustomersTable();
+    private Customers table = new Customers();
 
     public void run() {
         System.out.println(
@@ -26,7 +26,7 @@ public class CustomerProgram implements DataScanner, DataInput {
                             () -> num == 1 ?
                                     table.insert(array[1], array[2], array[3], array[4]) :
                                     num == 2 ? table.update(
-                                            CustomerAttribute.valueOf(array[1]), array[2]
+                                            Customer.valueOf(array[1]), array[2]
                                     ) : table.delete()
                     );
                     break;

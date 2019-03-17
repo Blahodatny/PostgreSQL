@@ -1,12 +1,12 @@
 package program.events;
 
-import database.operators.enums.OrderAttribute;
-import database.operators.tables.OrderItemsTable;
-import interfaces.DataInput;
-import interfaces.DataScanner;
+import dao.attributes.Order;
+import dao.tables.OrderItems;
+import program.data.DataInput;
+import program.data.DataScanner;
 
 public class OrderProgram implements DataScanner, DataInput {
-    private final OrderItemsTable table = new OrderItemsTable();
+    private OrderItems table = new OrderItems();
 
     public void run() {
         System.out.println(
@@ -25,13 +25,13 @@ public class OrderProgram implements DataScanner, DataInput {
                     if (num == 1) {
                         table.insert(array[0], array[1], array[2]);
                         System.out.println("ATTENTION!!! Your order number is: " +
-                                table.getOrderNumber());
+                                table.getOrderId());
                     } else {
-                        table.setOrderNumber(Integer.parseInt(array[0]));
+                        table.setOrderId(Integer.parseInt(array[0]));
                         if (num == 5) break;
                         table.operate(
                                 () -> num == 2 ? table.update(
-                                        OrderAttribute.valueOf(array[1]), array[2]
+                                        Order.valueOf(array[1]), array[2]
                                 ) : table.delete()
                         );
                     }

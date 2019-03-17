@@ -1,7 +1,7 @@
 package program;
 
-import database.RetailService;
-import interfaces.DataScanner;
+import dao.RetailService;
+import program.data.DataScanner;
 import program.events.CustomerProgram;
 import program.events.OrderProgram;
 import program.events.SearchProgram;

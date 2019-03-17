@@ -1,12 +1,12 @@
 package program.events;
 
-import database.operators.enums.OrderItemAttribute;
-import database.operators.tables.OrderItemsTable;
-import interfaces.DataInput;
-import interfaces.DataScanner;
+import dao.attributes.OrderItem;
+import dao.tables.OrderItems;
+import program.data.DataInput;
+import program.data.DataScanner;
 
 class OrderItemProgram implements DataScanner, DataInput {
-    void run(OrderItemsTable table) {
+    void run(OrderItems table) {
         System.out.println(
                 "Please, enter an action you want" +
                         "to perform with items\nFor help enter \'4\'"
@@ -21,7 +21,7 @@ class OrderItemProgram implements DataScanner, DataInput {
                     var array = num == 1 ? input.create((byte) 3) :
                             num == 2 ? input.update() : input.set();
                     if (num == 5) {
-                        table.setOrderNumber(Integer.parseInt(array[0]));
+                        table.setOrderId(Integer.parseInt(array[0]));
                         break;
                     }
                     table.operate(
@@ -29,7 +29,7 @@ class OrderItemProgram implements DataScanner, DataInput {
                                     table.insert(array[0], Integer.parseInt(array[1])) :
                                     num == 2 ?
                                             table.update(
-                                                    OrderItemAttribute.valueOf(array[1]),
+                                                    OrderItem.valueOf(array[1]),
                                                     Integer.parseInt(array[2]), array[0]
                                             ) :
                                             table.delete(array[0])

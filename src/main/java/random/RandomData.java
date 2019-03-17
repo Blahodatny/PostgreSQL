@@ -1,9 +1,9 @@
 package random;
 
-import database.RetailService;
-import database.operators.tables.CustomersTable;
-import database.operators.tables.OrderItemsTable;
-import database.operators.tables.ProductsTable;
+import dao.RetailService;
+import dao.tables.Customers;
+import dao.tables.OrderItems;
+import dao.tables.Products;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,7 +18,7 @@ import static java.util.Objects.requireNonNull;
 
 class RandomData extends RetailService {
     private Consumer<Supplier<PreparedStatement>> consumer;
-    final private ProductsTable product = new ProductsTable();
+    final private Products product = new Products();
     final private byte MAXQUAN = 100;
     final private byte MAXPRODID = 5;
 
@@ -38,7 +38,7 @@ class RandomData extends RetailService {
 
     void insertCustomers(String file) throws FileNotFoundException {
         var scanner = getFile(file);
-        var table = new CustomersTable();
+        var table = new Customers();
         while (scanner.hasNextLine()) {
             table.setPhone(scanner.next());
             consumer.accept(() ->
@@ -54,7 +54,7 @@ class RandomData extends RetailService {
 
     void insertOrders(String file) throws FileNotFoundException {
         var scanner = getFile(file);
-        var table = new OrderItemsTable();
+        var table = new OrderItems();
         var random = new Random();
         while (scanner.hasNextLine()) {
             table.insert(

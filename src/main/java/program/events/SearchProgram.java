@@ -1,9 +1,9 @@
 package program.events;
 
-import database.search.Search;
-import database.search.LikeSearch;
-import interfaces.DataInput;
-import interfaces.DataScanner;
+import dao.search.Search;
+import dao.search.LikeSearch;
+import program.data.DataInput;
+import program.data.DataScanner;
 
 import java.util.Arrays;
 

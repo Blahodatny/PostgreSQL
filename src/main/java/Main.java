@@ -1,4 +1,4 @@
-import database.RetailService;
+import dao.RetailService;
 import program.Program;
 
 class Main {
