@@ -77,11 +77,7 @@ class RandomData extends RetailService {
         var scanner = getFile(file);
         while (scanner.hasNextLine())
             consumer.accept(() ->
-                    product.insert(
-                            scanner.next(),
-                            scanner.next(),
-                            scanner.nextBoolean()
-                    )
+                    product.insert(scanner.next(), scanner.next(), scanner.nextBoolean())
             );
     }
 }

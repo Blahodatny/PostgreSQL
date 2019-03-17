@@ -22,7 +22,7 @@ public class Orders extends RetailService {
         try {
             connection.setAutoCommit(false);
             var statement = connection.prepareStatement(
-                    "INSERT INTO orders (Phone, To_Street, To_City, Ship_Date)\n" +
+                    "INSERT INTO ORDERS (Phone, To_Street, To_City, Ship_Date)\n" +
                             "VALUES (?, ?, ?, CURRENT_TIMESTAMP(0))",
                     Statement.RETURN_GENERATED_KEYS
             );

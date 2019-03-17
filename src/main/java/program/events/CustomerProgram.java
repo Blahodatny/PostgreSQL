@@ -10,7 +10,7 @@ public class CustomerProgram implements DataScanner, DataInput {
 
     public void run() {
         System.out.println(
-                "Please, enter an action you want" +
+                "Please, enter an action you want " +
                         "to perform with customer\nFor help enter \'4\'"
         );
         while (true) {

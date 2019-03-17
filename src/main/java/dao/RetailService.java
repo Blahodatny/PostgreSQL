@@ -23,7 +23,7 @@ public class RetailService {
         } catch (Exception e) {
             printError(e);
         }
-        System.out.println("Opened dao successfully!!!");
+        System.out.println("Opened database successfully!!!");
     }
 
     public void operate(Supplier<PreparedStatement> supplier) {

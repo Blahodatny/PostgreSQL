@@ -19,7 +19,7 @@ public class Input implements DataScanner {
                 num == 2 ? Order.values() :
                         OrderItem.values()
         ) {
-            System.out.print(attr + ": ");
+            System.out.println(attr + ":");
             array[i] = scanner.nextLine();
             i++;
         }
@@ -27,14 +27,14 @@ public class Input implements DataScanner {
     }
 
     public String[] update() {
-        System.out.println("Please, enter identification of table you wanna update");
+        System.out.println("Please, enter identification of entity you wanna update");
         var id = scanner.next();
         System.out.println("Enter an attribute [whitespace] its update value");
         return new String[]{id, scanner.next(), scanner.next()};
     }
 
     public String[] set() {
-        System.out.println("Please, enter identification of table you wanna delete\\set");
+        System.out.println("Please, enter identification of entity you wanna delete\\set");
         return new String[]{scanner.next()};
     }
 
