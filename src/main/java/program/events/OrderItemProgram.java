@@ -30,7 +30,8 @@ class OrderItemProgram implements DataScanner, DataInput {
                                     num == 2 ?
                                             table.update(
                                                     OrderItem.valueOf(array[1]),
-                                                    Integer.parseInt(array[2]), array[0]
+                                                    Integer.parseInt(array[2]),
+                                                    array[0]
                                             ) :
                                             table.delete(array[0])
                     );

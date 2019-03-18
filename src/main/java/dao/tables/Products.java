@@ -33,9 +33,7 @@ public class Products extends RetailService {
         try {
             connection.setAutoCommit(false);
             var statement = connection.prepareStatement(
-                    new String(
-                            readAllBytes(Paths.get(SQL))
-                    )
+                    new String(readAllBytes(Paths.get(SQL)))
             );
             statement.setInt(1, row);
             var res = statement.executeQuery();

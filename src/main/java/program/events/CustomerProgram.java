@@ -25,9 +25,11 @@ public class CustomerProgram implements DataScanner, DataInput {
                     table.operate(
                             () -> num == 1 ?
                                     table.insert(array[1], array[2], array[3], array[4]) :
-                                    num == 2 ? table.update(
-                                            Customer.valueOf(array[1]), array[2]
-                                    ) : table.delete()
+                                    num == 2 ?
+                                            table.update(
+                                                    Customer.valueOf(array[1]), array[2]
+                                            ) :
+                                            table.delete()
                     );
                     break;
                 case 4:
