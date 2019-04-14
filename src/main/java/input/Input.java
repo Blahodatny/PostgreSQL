@@ -15,7 +15,8 @@ public class Input implements DataScanner {
         scanner.nextLine();
         var array = new String[num == 1 ? 5 : num == 2 ? 3 : 2];
         byte i = 0;
-        for (var attr : num == 1 ? Customer.values() :
+        for (var attr : num == 1 ?
+                Customer.values() :
                 num == 2 ? Order.values() : OrderItem.values()) {
             System.out.println(attr + ":");
             array[i] = scanner.nextLine();
@@ -25,7 +26,8 @@ public class Input implements DataScanner {
     }
 
     public String[] update() {
-        System.out.println("Please, enter identification of entity you wanna update");
+        System.out.println(
+                "Please, enter identification of entity you wanna update");
         var id = scanner.next();
         System.out.println("Enter an attribute [whitespace] its update value");
         return new String[]{id, scanner.next(), scanner.next()};
@@ -33,8 +35,7 @@ public class Input implements DataScanner {
 
     public String[] set() {
         System.out.println(
-                "Please, enter identification of entity you wanna delete\\set"
-        );
+                "Please, enter identification of entity you wanna delete\\set");
         return new String[]{scanner.next()};
     }
 

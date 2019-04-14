@@ -9,9 +9,8 @@ import random.Randomize;
 
 public class Program implements DataScanner {
     public void run(RetailService service) {
-        System.out.println(
-                "Please, enter an action you want to perform\nFor help enter \'4\'"
-        );
+        System.out.println("Please, enter an action you want " +
+                "to perform\nFor help enter \'4\'");
         while (true) {
             var num = scanner.nextByte();
             switch (num) {
@@ -25,14 +24,12 @@ public class Program implements DataScanner {
                     new Randomize(service::operate).randomize();
                     break;
                 case 4:
-                    System.out.println(
-                            "1 - work with customer\n" +
-                                    "2 - work with order\n" +
-                                    "3 - randomize data\n" +
-                                    "4 - help\n" +
-                                    "5 - search\n" +
-                                    "any other - exit"
-                    );
+                    System.out.println("1 - work with customer\n" +
+                            "2 - work with order\n" +
+                            "3 - randomize data\n" +
+                            "4 - help\n" +
+                            "5 - search\n" +
+                            "any other - exit");
                     break;
                 case 5:
                     new SearchProgram().run();

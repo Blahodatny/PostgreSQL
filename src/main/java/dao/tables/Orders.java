@@ -22,7 +22,8 @@ public class Orders extends RetailService {
         try {
             connection.setAutoCommit(false);
             var statement = connection.prepareStatement(
-                    "INSERT INTO ORDERS (Phone, To_Street, To_City, Ship_Date)\n" +
+                    "INSERT INTO ORDERS " +
+                            "(Phone, To_Street, To_City, Ship_Date)\n" +
                             "VALUES (?, ?, ?, CURRENT_TIMESTAMP(0))",
                     Statement.RETURN_GENERATED_KEYS
             );
@@ -43,8 +44,7 @@ public class Orders extends RetailService {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "DELETE FROM ORDERS WHERE Id = ?"
-            );
+                    "DELETE FROM ORDERS WHERE Id = ?");
             statement.setInt(1, orderId);
         } catch (SQLException e) {
             printError(e);
@@ -58,8 +58,7 @@ public class Orders extends RetailService {
             statement = connection.prepareStatement(
                     "UPDATE ORDERS\n" +
                             "SET " + attribute.name() + " = ?\n" +
-                            "WHERE Id = ?"
-            );
+                            "WHERE Id = ?");
             statement.setString(1, value);
             statement.setInt(2, orderId);
         } catch (SQLException e) {

@@ -27,12 +27,8 @@ class RandomData extends RetailService {
     }
 
     private Scanner getFile(String file) throws FileNotFoundException {
-        return new Scanner(
-                new File(requireNonNull(getClass()
-                        .getClassLoader()
-                        .getResource("data/" + file)
-                ).getFile())
-        );
+        return new Scanner(new File(requireNonNull(getClass().getClassLoader()
+                .getResource("data/" + file)).getFile()));
     }
 
     void insertCustomers(String file) throws FileNotFoundException {
@@ -40,14 +36,12 @@ class RandomData extends RetailService {
         var table = new Customers();
         while (scanner.hasNextLine()) {
             table.setPhone(scanner.next());
-            consumer.accept(
-                    () -> table.insert(
-                            scanner.next(),
-                            scanner.next(),
-                            scanner.next() + " " + scanner.next(),
-                            scanner.next()
-                    )
-            );
+            consumer.accept(() -> table.insert(
+                    scanner.next(),
+                    scanner.next(),
+                    scanner.next() + " " + scanner.next(),
+                    scanner.next()
+            ));
         }
     }
 
@@ -61,22 +55,21 @@ class RandomData extends RetailService {
                     scanner.next() + " " + scanner.next(),
                     scanner.next()
             );
-            IntStream
-                    .range(0, random.nextInt(MAXPRODID) + 1)
-                    .forEach(i -> consumer.accept(
-                            () -> table.insert(
-                                    product.getRow(random.nextInt(MAXPRODID) + 1),
-                                    random.nextInt(MAXQUAN) + 1
-                            ))
-                    );
+            IntStream.range(0, random.nextInt(MAXPRODID) + 1)
+                    .forEach(i -> consumer.accept(() -> table.insert(
+                            product.getRow(random.nextInt(MAXPRODID) + 1),
+                            random.nextInt(MAXQUAN) + 1
+                    )));
         }
     }
 
     void insertProducts(String file) throws FileNotFoundException {
         var scanner = getFile(file);
         while (scanner.hasNextLine())
-            consumer.accept(() ->
-                    product.insert(scanner.next(), scanner.next(), scanner.nextBoolean())
-            );
+            consumer.accept(() -> product.insert(
+                    scanner.next(),
+                    scanner.next(),
+                    scanner.nextBoolean()
+            ));
     }
 }

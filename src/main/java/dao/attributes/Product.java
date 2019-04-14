@@ -1,5 +1,3 @@
 package dao.attributes;
 
-public enum Product {
-    Id, Type
-}
+public enum Product {Id, Type}

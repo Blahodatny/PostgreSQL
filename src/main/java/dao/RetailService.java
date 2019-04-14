@@ -11,14 +11,15 @@ import static java.sql.DriverManager.getConnection;
 public class RetailService {
     protected static Connection connection;
 
-    protected RetailService() {
-    }
+    protected RetailService() { }
 
     public RetailService(String db_name, String user, String password) {
         try {
             Class.forName("org.postgresql.Driver");
             connection = getConnection(
-                    "jdbc:postgresql://localhost:5432/" + db_name, user, password
+                    "jdbc:postgresql://localhost:5432/" + db_name,
+                    user,
+                    password
             );
         } catch (Exception e) {
             printError(e);
@@ -42,12 +43,12 @@ public class RetailService {
         e.printStackTrace();
         System.err.println(
                 "Error in " + this.getClass().getSimpleName() + ": " +
-                        e.getClass().getName() + ": " + e.getMessage()
-        );
+                        e.getClass().getName() + ": " + e.getMessage());
         System.exit(0);
     }
 
-    protected void close(ResultSet res, PreparedStatement st) throws SQLException {
+    protected void close(ResultSet res, PreparedStatement st)
+            throws SQLException {
         res.close();
         st.close();
         connection.commit();

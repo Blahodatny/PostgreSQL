@@ -17,14 +17,13 @@ public class Search extends RetailService {
         List<String[]> list = new ArrayList<>();
         try {
             connection.setAutoCommit(false);
-            var statement = connection.prepareStatement(
-                    new String(readAllBytes(get(
-                            SQL + (num == 2 ? "allTablesSearch-trigram.sql" :
-                                    num == 3 ? "mandatoryEntry-fts.sql" :
-                                            "nonEntry-fts.sql")
-                            )
-                    ))
-            );
+            var statement =
+                    connection.prepareStatement(new String(readAllBytes(get(
+                            SQL + (num == 2 ?
+                                    "allTablesSearch-trigram.sql" :
+                                    num == 3 ?
+                                            "mandatoryEntry-fts.sql" :
+                                            "nonEntry-fts.sql")))));
             for (byte i = 1; i < (num == 2 ? 9 : 2); i++)
                 statement.setString(i, String.join(" | ", str));
             var res = statement.executeQuery();

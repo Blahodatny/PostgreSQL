@@ -9,22 +9,20 @@ import java.sql.SQLException;
 public class Customers extends RetailService {
     private String phone;
 
-    public Customers() {
-    }
+    public Customers() {}
 
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public PreparedStatement insert(
-            String firstName, String lastName, String street, String city) {
+    public PreparedStatement insert(String firstName, String lastName,
+            String street, String city) {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO CUSTOMERS " +
                             "(Phone, First_Name, Last_Name, Street, City)\n" +
-                            "VALUES (?, ?, ?, ?, ?)"
-            );
+                            "VALUES (?, ?, ?, ?, ?)");
             statement.setString(1, phone);
             statement.setString(2, firstName);
             statement.setString(3, lastName);
@@ -40,8 +38,7 @@ public class Customers extends RetailService {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "DELETE FROM CUSTOMERS WHERE Phone = ?"
-            );
+                    "DELETE FROM CUSTOMERS WHERE Phone = ?");
             statement.setString(1, phone);
         } catch (SQLException e) {
             printError(e);
@@ -55,8 +52,7 @@ public class Customers extends RetailService {
             statement = connection.prepareStatement(
                     "UPDATE CUSTOMERS\n" +
                             "SET " + attribute.name() + " = ?\n" +
-                            "WHERE Phone = ?"
-            );
+                            "WHERE Phone = ?");
             statement.setString(1, value);
             statement.setString(2, phone);
         } catch (SQLException e) {

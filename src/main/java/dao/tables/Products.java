@@ -10,15 +10,16 @@ import java.sql.SQLException;
 import static java.nio.file.Files.readAllBytes;
 
 public class Products extends RetailService {
-    final private static String SQL = "./src/main/java/dao/sql/products/getRow.sql";
+    final private static String SQL =
+            "./src/main/java/dao/sql/products/getRow.sql";
 
-    public PreparedStatement insert(String id, String type, boolean secondHand) {
+    public PreparedStatement insert(String id, String type,
+            boolean secondHand) {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO PRODUCTS (Id, Type, Second_Hand)\n" +
-                            "VALUES (?, ?, ?)"
-            );
+                            "VALUES (?, ?, ?)");
             statement.setString(1, id);
             statement.setString(2, type);
             statement.setBoolean(3, secondHand);
@@ -33,8 +34,7 @@ public class Products extends RetailService {
         try {
             connection.setAutoCommit(false);
             var statement = connection.prepareStatement(
-                    new String(readAllBytes(Paths.get(SQL)))
-            );
+                    new String(readAllBytes(Paths.get(SQL))));
             statement.setInt(1, row);
             var res = statement.executeQuery();
             res.next();
