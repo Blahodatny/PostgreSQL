@@ -1,5 +1,5 @@
 SELECT Id
 FROM (
-       SELECT Id, row_number() OVER (ORDER BY Id) FROM PRODUCTS
+         SELECT Id, row_number() OVER (ORDER BY Id) FROM PRODUCTS
      ) X
 WHERE ROW_NUMBER = ?
