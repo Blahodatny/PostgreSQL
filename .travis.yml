@@ -1,8 +1,9 @@
 language: java
 install: true
 
-jdk:
-  - openjdk13
+os: linux
+dist: trusty
+jdk: openjdk14
 
 script:
   - ./gradlew build --scan -s

@@ -1,20 +1,19 @@
 plugins {
     id 'java'
     id 'application'
-    id "com.gradle.build-scan" version "2.4.2"
 }
 
 group 'com.project'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 13
+sourceCompatibility = 14
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.postgresql:postgresql:42.2.8'
+    implementation 'org.postgresql:postgresql:42.2.12'
 }
 
 mainClassName = 'Main'
