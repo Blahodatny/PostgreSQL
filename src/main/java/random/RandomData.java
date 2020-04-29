@@ -17,13 +17,13 @@ import java.util.stream.IntStream;
 import static java.util.Objects.requireNonNull;
 
 class RandomData extends RetailService {
-    final private Consumer<Supplier<PreparedStatement>> consumer;
-    final private Products product = new Products();
-    final private byte MAXQUAN = 100;
-    final private byte MAXPRODID = 5;
+    private final Consumer<Supplier<PreparedStatement>> CONSUMER;
+    private final Products PRODUCT = new Products();
+    private final byte MAXQUAN = 100;
+    private final byte MAXPRODID = 5;
 
     RandomData(Consumer<Supplier<PreparedStatement>> consumer) {
-        this.consumer = consumer;
+        this.CONSUMER = consumer;
     }
 
     private Scanner getFile(String file) throws FileNotFoundException {
@@ -36,7 +36,7 @@ class RandomData extends RetailService {
         var table = new Customers();
         while (scanner.hasNextLine()) {
             table.setPhone(scanner.next());
-            consumer.accept(() -> table.insert(
+            CONSUMER.accept(() -> table.insert(
                     scanner.next(),
                     scanner.next(),
                     scanner.next() + " " + scanner.next(),
@@ -56,8 +56,8 @@ class RandomData extends RetailService {
                     scanner.next()
             );
             IntStream.range(0, random.nextInt(MAXPRODID) + 1)
-                    .forEach(i -> consumer.accept(() -> table.insert(
-                            product.getRow(random.nextInt(MAXPRODID) + 1),
+                    .forEach(i -> CONSUMER.accept(() -> table.insert(
+                            PRODUCT.getRow(random.nextInt(MAXPRODID) + 1),
                             random.nextInt(MAXQUAN) + 1
                     )));
         }
@@ -66,7 +66,7 @@ class RandomData extends RetailService {
     void insertProducts(String file) throws FileNotFoundException {
         var scanner = getFile(file);
         while (scanner.hasNextLine())
-            consumer.accept(() -> product.insert(
+            CONSUMER.accept(() -> PRODUCT.insert(
                     scanner.next(),
                     scanner.next(),
                     scanner.nextBoolean()

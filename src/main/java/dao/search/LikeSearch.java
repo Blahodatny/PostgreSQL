@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LikeSearch extends RetailService {
-    final private String[] TABLES =
+    private final String[] TABLES =
             new String[]{"CUSTOMERS", "ORDERS", "PRODUCTS"};
 
     public List<String> search(String string) {

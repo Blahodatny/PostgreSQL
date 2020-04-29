@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import static java.nio.file.Files.readAllBytes;
 
 public class Products extends RetailService {
-    final private static String SQL =
+    private final static String SQL =
             "./src/main/java/dao/sql/products/getRow.sql";
 
     public PreparedStatement insert(String id, String type,

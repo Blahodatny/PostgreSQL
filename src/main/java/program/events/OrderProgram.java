@@ -6,7 +6,7 @@ import program.data.DataInput;
 import program.data.DataScanner;
 
 public class OrderProgram implements DataScanner, DataInput {
-    private final OrderItems table = new OrderItems();
+    private final OrderItems TABLE = new OrderItems();
 
     public void run() {
         System.out.println("Please, enter an action you want " +
@@ -22,20 +22,20 @@ public class OrderProgram implements DataScanner, DataInput {
                             input.create((byte) 2) :
                             num == 2 ? input.update() : input.set();
                     if (num == 1) {
-                        table.insert(array[0], array[1], array[2]);
+                        TABLE.insert(array[0], array[1], array[2]);
                         System.out.println(
                                 "ATTENTION!!! Your order number is: " +
-                                        table.getOrderId());
+                                        TABLE.getOrderId());
                     } else {
-                        table.setOrderId(Integer.parseInt(array[0]));
+                        TABLE.setOrderId(Integer.parseInt(array[0]));
                         if (num == 5)
                             break;
-                        table.operate(() -> num == 2 ?
-                                table.update(
+                        TABLE.operate(() -> num == 2 ?
+                                TABLE.update(
                                         Order.valueOf(array[1]),
                                         array[2]
                                 ) :
-                                table.delete());
+                                TABLE.delete());
                     }
                     break;
                 case 4:
@@ -50,7 +50,7 @@ public class OrderProgram implements DataScanner, DataInput {
                             "any other - exit to main loop");
                     break;
                 case 6:
-                    new OrderItemProgram().run(table);
+                    new OrderItemProgram().run(TABLE);
                     break;
                 default:
                     return;
