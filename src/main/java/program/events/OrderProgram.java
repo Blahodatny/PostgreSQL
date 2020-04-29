@@ -6,11 +6,11 @@ import program.data.DataInput;
 import program.data.DataScanner;
 
 public class OrderProgram implements DataScanner, DataInput {
-    private OrderItems table = new OrderItems();
+    private final OrderItems table = new OrderItems();
 
     public void run() {
         System.out.println("Please, enter an action you want " +
-                "to perform with order\nFor help enter \'4\'");
+                "to perform with order\nFor help enter '4'");
         while (true) {
             var num = scanner.nextByte();
             switch (num) {

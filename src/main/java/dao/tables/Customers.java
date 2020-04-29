@@ -11,9 +11,7 @@ public class Customers extends RetailService {
 
     public Customers() {}
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+    public void setPhone(String phone) { this.phone = phone; }
 
     public PreparedStatement insert(String firstName, String lastName,
             String street, String city) {

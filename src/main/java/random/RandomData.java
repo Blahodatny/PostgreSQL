@@ -17,7 +17,7 @@ import java.util.stream.IntStream;
 import static java.util.Objects.requireNonNull;
 
 class RandomData extends RetailService {
-    private Consumer<Supplier<PreparedStatement>> consumer;
+    final private Consumer<Supplier<PreparedStatement>> consumer;
     final private Products product = new Products();
     final private byte MAXQUAN = 100;
     final private byte MAXPRODID = 5;

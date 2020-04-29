@@ -8,7 +8,7 @@ import program.data.DataScanner;
 class OrderItemProgram implements DataScanner, DataInput {
     void run(OrderItems table) {
         System.out.println("Please, enter an action you want " +
-                "to perform with items\nFor help enter \'4\'");
+                "to perform with items\nFor help enter '4'");
         while (true) {
             var num = scanner.nextByte();
             switch (num) {

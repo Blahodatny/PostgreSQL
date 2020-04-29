@@ -10,13 +10,9 @@ import java.sql.Statement;
 public class Orders extends RetailService {
     int orderId;
 
-    public int getOrderId() {
-        return orderId;
-    }
+    public int getOrderId() { return orderId; }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
+    public void setOrderId(int orderId) { this.orderId = orderId; }
 
     public void insert(String phone, String toStreet, String toCity) {
         try {

@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class SearchProgram implements DataScanner, DataInput {
     public void run() {
         System.out.println("Please, enter a search you wanna " +
-                "perform\nFor help enter \'4\'");
+                "perform\nFor help enter '4'");
         while (true) {
             var num = scanner.nextByte();
             switch (num) {

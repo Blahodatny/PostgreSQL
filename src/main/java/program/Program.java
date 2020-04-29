@@ -10,7 +10,7 @@ import random.Randomize;
 public class Program implements DataScanner {
     public void run(RetailService service) {
         System.out.println("Please, enter an action you want " +
-                "to perform\nFor help enter \'4\'");
+                "to perform\nFor help enter '4'");
         while (true) {
             var num = scanner.nextByte();
             switch (num) {
